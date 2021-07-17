@@ -18,10 +18,6 @@ namespace PCShop.Data.Models
         [MaxLength(50)]
         public string Model { get; set; }
 
-        public string Socket { get; set; }
-        
-        public string Ports { get; set; }
-
         [Required]
         public double Price { get; set; }
     }

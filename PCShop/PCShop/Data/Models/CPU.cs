@@ -13,7 +13,7 @@ namespace PCShop.Data.Models
 
         public string Model { get; set; }
 
-        public double BoostFrequencies { get; set; }
+        public string BoostFrequencies { get; set; }
 
         public string TDP { get; set; }
         [Required]
