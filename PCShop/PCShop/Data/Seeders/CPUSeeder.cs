@@ -63,6 +63,39 @@ namespace PCShop.Data.Seeders
                 Price = 140.00,
                 ReleasedYear=2015
             });
+
+            this.cpus.Add(new CPU
+            {
+                ImagePath = "https://p1.akcdn.net/full/534241461.intel-core-i7-9700k-octa-core-3-6-ghz-lga1151.jpg",
+                Platform = "Intel",
+                Model = "Core i7-9700K",
+                BoostFrequencies = "3600 MHz - 	4900 MHz",
+                TDP = 95,
+                Price = 240.00,
+                ReleasedYear = 2018
+            });
+
+            this.cpus.Add(new CPU
+            {
+                ImagePath = "https://p1.akcdn.net/full/685947894.intel-core-i9-10900k-10-core-3-7ghz-lga1200.jpg",
+                Platform = "Intel",
+                Model = "Core i9-10900K",
+                BoostFrequencies = "3700 MHz - 	5300 MHz",
+                TDP = 125,
+                Price = 530.00,
+                ReleasedYear = 2020
+            });
+
+            this.cpus.Add(new CPU
+            {
+                ImagePath = "https://p1.akcdn.net/full/633090768.amd-ryzen-threadripper-3970x-32-core-3-7ghz-trx4.jpg",
+                Platform = "AMD",
+                Model = "Ryzen Threadripper 3970X",
+                BoostFrequencies = "3700 MHz - 	4500 MHz",
+                TDP = 280,
+                Price = 2150.00,
+                ReleasedYear = 2020
+            });
         }
 
         

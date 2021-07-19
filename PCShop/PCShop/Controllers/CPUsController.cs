@@ -16,24 +16,24 @@ namespace PCShop.Controllers
             this.data = data;
         }
 
-        public IActionResult All(CPUSorting sorting, string platform, string searchTerm)
+        public IActionResult All([FromQuery]AllCPUsQueryModel query)
         {
             var cpusQuery = this.data.CPUs.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(platform))
+            if (!string.IsNullOrWhiteSpace(query.Platform))
             {
-                cpusQuery = cpusQuery.Where(c => c.Platform == platform);
+                cpusQuery = cpusQuery.Where(c => c.Platform == query.Platform);
             }
 
-            if (!string.IsNullOrWhiteSpace(searchTerm))
+            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
             {
                 cpusQuery = cpusQuery.Where(c =>
-                c.Platform.ToLower().Contains(searchTerm.ToLower())
-                || c.Model.ToLower().Contains(searchTerm.ToLower())
-                || (c.Platform + " " + c.Model).ToLower().Contains(searchTerm.ToLower()));
+                c.Platform.ToLower().Contains(query.SearchTerm.ToLower())
+                || c.Model.ToLower().Contains(query.SearchTerm.ToLower())
+                || (c.Platform + " " + c.Model).ToLower().Contains(query.SearchTerm.ToLower()));
             }
 
-            cpusQuery = sorting switch
+            cpusQuery = query.Sorting switch
             {
                 CPUSorting.Price => cpusQuery.OrderByDescending(c => c.Price),
                 CPUSorting.ReleasedYear => cpusQuery.OrderByDescending(c => c.ReleasedYear),
@@ -42,6 +42,8 @@ namespace PCShop.Controllers
             };
 
             var cpus = cpusQuery
+                .Skip((query.CurrentPage-1) * AllCPUsQueryModel.CPUsPerPage)
+                .Take(AllCPUsQueryModel.CPUsPerPage)
                  .Select(c => new CPUsListViewModel
                  {
                      Id = c.Id,
@@ -55,6 +57,8 @@ namespace PCShop.Controllers
                  })
                  .ToList();
 
+            var cpusCount = cpusQuery.Count();
+
             var cpuPlatforms = this.data
                 .CPUs
                 .Select(c => c.Platform)
@@ -63,10 +67,13 @@ namespace PCShop.Controllers
 
             var cpusModel = new AllCPUsQueryModel
             {
-                Sorting= sorting,
+                Sorting= query.Sorting,
                 Platforms = cpuPlatforms,
                 CPUs = cpus,
-                SearchTerm = searchTerm
+                SearchTerm = query.SearchTerm,
+                CurrentPage = query.CurrentPage,
+                TotalCPUs = cpusCount,
+                Platform = query.Platform
             };
 
             

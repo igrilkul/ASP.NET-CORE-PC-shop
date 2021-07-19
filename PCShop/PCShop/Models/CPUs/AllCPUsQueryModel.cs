@@ -11,17 +11,20 @@ namespace PCShop.Models.CPUs
     {
         public const int CPUsPerPage = 1;
 
-        public int CurrentPage { get; init; }
-        public string Platform { get; init; }
-        public IEnumerable<string> Platforms { get; init; }
+        public int CurrentPage { get; init; } = 1;
 
-        public IEnumerable<string> Model { get; init; }
+        public int TotalCPUs { get; set; }
+
+        public string Platform { get; init; }
+        public IEnumerable<string> Platforms { get; set; }
+
+        public IEnumerable<string> Model { get; set; }
 
         [Display(Name="Search")]
         public string SearchTerm { get; init; }
 
         public CPUSorting Sorting { get; init; }
 
-        public IEnumerable<CPUsListViewModel> CPUs { get; init; }
+        public IEnumerable<CPUsListViewModel> CPUs { get; set; }
     }
 }
