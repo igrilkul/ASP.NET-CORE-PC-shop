@@ -1,0 +1,23 @@
+﻿@model IEnumerable<PCShop.Models.Cases.CasesListViewModel>
+
+@{
+    ViewData["Title"] = "Cases";
+}
+
+<ul class="list-group list-group-flush">
+    @foreach (var caso in Model)
+    {
+    <li class="list-group-item">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <img src="@caso.ImagePath" class="rounded float-left" alt="img-thumbnail" width="150px" />
+            </div>
+            <div class="col-md-3">
+                <h3 class="text-center">@caso.Make - @caso.Model</h3>
+                <p class="text-left"><strong>Size - </strong>@caso.Size</p>
+                <p class="text-left"><strong>Price - </strong>@caso.Price€</p>
+            </div>
+        </div>
+    </li>
+    }
+</ul>

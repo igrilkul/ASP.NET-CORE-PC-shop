@@ -18,7 +18,7 @@ namespace PCShop.Data.Seeders
 
         public void start()
         {
-            if (checkData())
+            if (!checkData())
             {
                 prepareData();
                 seedData();
@@ -47,7 +47,8 @@ namespace PCShop.Data.Seeders
                 ImagePath = "https://p1.akcdn.net/full/499180135.noctua-nf-a12x25-pwm.jpg",
                 Make = "Noctua",
                 Model = "NF-A12",
-                Price = 25
+                Price = 25,
+                ReleasedYear=2016
             });
 
             this.fans.Add(new Fan
@@ -55,7 +56,8 @@ namespace PCShop.Data.Seeders
                 ImagePath = "https://p1.akcdn.net/full/799543380.lian-li-uni-sl140-argb-ll-fan-luli-018-9.jpg",
                 Make = "Lian Li",
                 Model = "UNI SL140",
-                Price = 25
+                Price = 25,
+                ReleasedYear=2012
             });
         }
 

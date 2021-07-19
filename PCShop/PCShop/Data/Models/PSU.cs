@@ -19,5 +19,7 @@ namespace PCShop.Data.Models
         public string Efficiency { get; set; }
         [Required]
         public double Price { get; set; }
+
+        public int ReleasedYear { get; set; }
     }
 }

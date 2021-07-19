@@ -19,7 +19,7 @@ namespace PCShop.Data.Seeders
 
         public void start()
         {
-            if (checkData())
+            if (!checkData())
             {
                 prepareData();
                 seedData();
@@ -43,7 +43,17 @@ namespace PCShop.Data.Seeders
 
         public void prepareData()
         {
-            throw new NotImplementedException();
+            this.rams.Add(new RAM
+            {
+                ImagePath = "https://p1.akcdn.net/full/545789382.corsair-vengeance-rgb-pro-16gb-2x8gb-ddr4-3200mhz-cmw16gx4m2c3200c16.jpg",
+                Make = "Corsair",
+                Model = "VENGEANCE RGB Pro",
+                Size = 16,
+                NumberOfSticks = 2,
+                Timings = "16-18-18-36",
+                Price = 110,
+                ReleasedYear=2018
+            });
         }
     }
 }

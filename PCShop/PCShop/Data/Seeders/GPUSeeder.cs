@@ -18,7 +18,7 @@ namespace PCShop.Data.Seeders
 
         public void start()
         {
-            if (checkData())
+            if (!checkData())
             {
                 prepareData();
                 seedData();
@@ -47,7 +47,8 @@ namespace PCShop.Data.Seeders
                 Platform = "Nvidia",
                 Make = "MSI",
                 Model = "RTX 3060",
-                Price = 899
+                Price = 899,
+                ReleasedYear=2020
             });
 
             this.gpus.Add(new GPU
@@ -56,7 +57,8 @@ namespace PCShop.Data.Seeders
                 Platform = "AMD",
                 Make = "Powercolor",
                 Model = "Radeon RX 6700XT Red Devil",
-                Price = 870
+                Price = 870,
+                ReleasedYear=2021
             });
         }
     }

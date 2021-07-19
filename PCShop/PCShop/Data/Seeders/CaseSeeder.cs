@@ -18,7 +18,7 @@ namespace PCShop.Data.Seeders
 
         public void start()
         {
-            if (checkData())
+            if (!checkData())
             {
                 prepareData();
                 seedData();
@@ -49,7 +49,8 @@ namespace PCShop.Data.Seeders
                 Make = "Be Quiet!",
                 Model = "Pure Base 500DX",
                 Size = "ATX",
-                Price = 110.00
+                Price = 110.00,
+                ReleasedYear=2018
             });
 
            this.cases.Add(new Case
@@ -58,7 +59,8 @@ namespace PCShop.Data.Seeders
                 Make = "Asus",
                 Model = "ROG Strix Helios",
                 Size = "ATX",
-                Price = 250.00
+                Price = 250.00,
+                ReleasedYear=2019
             });
 
         }

@@ -18,7 +18,7 @@ namespace PCShop.Data.Seeders
 
         public void start()
         {
-            if (checkData())
+            if (!checkData())
             {
                 prepareData();
                 seedData();
@@ -48,7 +48,8 @@ namespace PCShop.Data.Seeders
                 Make = "MSI",
                 Platfom = "AMD",
                 Model = "B450 Tomahawk Max",
-                Price = 110
+                Price = 110,
+                ReleasedYear=2019
             });
         }
 

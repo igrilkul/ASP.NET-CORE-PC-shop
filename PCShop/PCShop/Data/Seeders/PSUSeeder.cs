@@ -19,7 +19,7 @@ namespace PCShop.Data.Seeders
 
         public void start()
         {
-            if (checkData())
+            if (!checkData())
             {
                 prepareData();
                 seedData();
@@ -43,7 +43,17 @@ namespace PCShop.Data.Seeders
 
         public void prepareData()
         {
-            throw new NotImplementedException();
+            this.psus.Add(new PSU
+            {
+                ImagePath = "https://p1.akcdn.net/full/493165149.corsair-rmx-series-rm850x-2018-850w-gold-cp-9020180.jpg",
+                Make = "Corsair",
+                Model = "RM850x",
+                Power = 850,
+                Efficiency = "80+ Gold",
+                Price = 150,
+                ReleasedYear=2020
+            });
+
         }
     }
 }

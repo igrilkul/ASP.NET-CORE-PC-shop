@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCShop.Data;
 
-namespace PCShop.Data.Migrations
+namespace PCShop.Migrations
 {
     [DbContext(typeof(PCShopDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210719145107_CreateTables")]
+    partial class CreateTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,8 +228,8 @@ namespace PCShop.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("BoostFrequencies")
-                        .HasColumnType("float");
+                    b.Property<string>("BoostFrequencies")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
@@ -241,8 +243,11 @@ namespace PCShop.Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<string>("TDP")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ReleasedYear")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TDP")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -268,6 +273,9 @@ namespace PCShop.Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int>("ReleasedYear")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("CPUCoolers");
@@ -291,6 +299,9 @@ namespace PCShop.Data.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
+
+                    b.Property<int>("ReleasedYear")
+                        .HasColumnType("int");
 
                     b.Property<string>("Size")
                         .HasColumnType("nvarchar(max)");
@@ -319,6 +330,9 @@ namespace PCShop.Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int>("ReleasedYear")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Fans");
@@ -345,6 +359,9 @@ namespace PCShop.Data.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
+
+                    b.Property<int>("ReleasedYear")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -374,14 +391,11 @@ namespace PCShop.Data.Migrations
                     b.Property<string>("Platfom")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Ports")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<string>("Socket")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ReleasedYear")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -413,6 +427,9 @@ namespace PCShop.Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int>("ReleasedYear")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("PSUs");
@@ -439,6 +456,9 @@ namespace PCShop.Data.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
+
+                    b.Property<int>("ReleasedYear")
+                        .HasColumnType("int");
 
                     b.Property<int>("Size")
                         .HasColumnType("int");

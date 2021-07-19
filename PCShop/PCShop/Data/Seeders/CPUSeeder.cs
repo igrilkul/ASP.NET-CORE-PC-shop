@@ -18,7 +18,7 @@ namespace PCShop.Data.Seeders
 
         public void start()
         {
-            if (checkData())
+            if (!checkData())
             {
                 prepareData();
                 seedData();
@@ -48,8 +48,9 @@ namespace PCShop.Data.Seeders
                 Platform = "AMD",
                 Model = "Ryzen 5 3600",
                 BoostFrequencies = "3600 MHz - 	4200 MHz",
-                TDP = "65W",
-                Price = 175.00
+                TDP = 60,
+                Price = 175.00,
+                ReleasedYear=2020
             });
 
             this.cpus.Add(new CPU
@@ -58,8 +59,9 @@ namespace PCShop.Data.Seeders
                 Platform = "Intel",
                 Model = "Core i5-10400F",
                 BoostFrequencies = "2900 MHz - 	4300 MHz",
-                TDP = "65W",
-                Price = 140.00
+                TDP = 65,
+                Price = 140.00,
+                ReleasedYear=2015
             });
         }
 

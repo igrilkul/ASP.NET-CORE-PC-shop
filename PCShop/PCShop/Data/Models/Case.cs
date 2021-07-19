@@ -16,5 +16,7 @@ namespace PCShop.Data.Models
         public string Size { get; set; }
         [Required]
         public double Price { get; set; }
+
+        public int ReleasedYear { get; set; }
     }
 }

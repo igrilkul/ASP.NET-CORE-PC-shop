@@ -1,0 +1,58 @@
+﻿@model AllCPUsQueryModel
+
+@{
+    ViewData["Title"] = "CPUs";
+}
+<form method="get">
+    <div class="row mb-5">
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label asp-for="Platform"></label>
+                <select asp-for="Platform" class="form-control">
+                    <option value="">All</option>
+                    @foreach (var platform in Model.Platforms)
+                    {
+                        <option value="@platform">@platform</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group col-md-4">
+            <label asp-for="SearchTerm"></label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="AMD, Intel, Ryzen e.t.c."></input>
+        </div>
+
+        <div class="form-group col-md-3">
+            <div class="form-group">
+                <label asp-for="Sorting"></label>
+                <select asp-for="Sorting" class="form-control">
+                    <option value="0" selected>Year</option>
+                    <option value="1">Price</option>
+                    <option value="2">TDP</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary d-none" value="Search" />
+</form>
+
+
+<ul class="list-group list-group-flush">
+    @foreach (var cpu in Model.CPUs)
+    {
+        <li class="list-group-item">
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <img src="@cpu.ImagePath" class="rounded float-left" alt="img-thumbnail" width="150px" />
+                </div>
+                <div class="col-md-3">
+                    <h3 class="text-center">@cpu.Platform - @cpu.Model</h3>
+                    <p class="text-left"><strong>Boost Frequencies - </strong>@cpu.BoostFrequencies</p>
+                    <p class="text-left"><strong>Price - </strong>@cpu.Price€</p>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

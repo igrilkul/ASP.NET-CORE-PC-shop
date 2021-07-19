@@ -15,8 +15,10 @@ namespace PCShop.Data.Models
 
         public string BoostFrequencies { get; set; }
 
-        public string TDP { get; set; }
+        public int TDP { get; set; }
         [Required]
         public double Price { get; set; }
+
+        public int ReleasedYear { get; set; }
     }
 }
