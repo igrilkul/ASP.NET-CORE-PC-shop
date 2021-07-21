@@ -10,8 +10,8 @@ using PCShop.Data;
 namespace PCShop.Migrations
 {
     [DbContext(typeof(PCShopDbContext))]
-    [Migration("20210719145107_CreateTables")]
-    partial class CreateTables
+    [Migration("20210721114210_CpuCooler-UPD")]
+    partial class CpuCoolerUPD
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -261,6 +261,12 @@ namespace PCShop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("Airflow")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Dimensions")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
@@ -270,8 +276,14 @@ namespace PCShop.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Noise")
+                        .HasColumnType("float");
+
                     b.Property<double>("Price")
                         .HasColumnType("float");
+
+                    b.Property<int>("RPM")
+                        .HasColumnType("int");
 
                     b.Property<int>("ReleasedYear")
                         .HasColumnType("int");

@@ -18,22 +18,91 @@ namespace PCShop.Controllers
             this.data = data;
         }
 
-        public IActionResult All()
+        public IActionResult All([FromQuery] AllCPUCoolersQueryModel query)
         {
-            var CPUCoolers = this.data
-                 .CPUCoolers
-                 .OrderByDescending(c => c.Id)
+            var cpuCoolersQuery = this.data.CPUCoolers.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.Make))
+            {
+                cpuCoolersQuery = cpuCoolersQuery.Where(c => c.Make == query.Make);
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
+            {
+                cpuCoolersQuery = cpuCoolersQuery.Where(c =>
+                c.Make.ToLower().Contains(query.SearchTerm.ToLower())
+                || c.Model.ToLower().Contains(query.SearchTerm.ToLower())
+                || (c.Make + " " + c.Model).ToLower().Contains(query.SearchTerm.ToLower()));
+            }
+
+            cpuCoolersQuery = query.Sorting switch
+            {
+                CPUCoolerSorting.Price => cpuCoolersQuery.OrderByDescending(c => c.Price),
+                CPUCoolerSorting.ReleasedYear => cpuCoolersQuery.OrderByDescending(c => c.ReleasedYear),
+                CPUCoolerSorting.Airflow => cpuCoolersQuery.OrderByDescending(c => c.Airflow),
+                CPUCoolerSorting.RPM => cpuCoolersQuery.OrderByDescending(c => c.RPM),
+                CPUCoolerSorting.Noise => cpuCoolersQuery.OrderByDescending(c => c.Noise),
+                _ => cpuCoolersQuery.OrderByDescending(c => c.Id)
+            };
+
+            var cpuCoolers = cpuCoolersQuery
+                .Skip((query.CurrentPage - 1) * AllCPUCoolersQueryModel.ItemsPerPage)
+                .Take(AllCPUCoolersQueryModel.ItemsPerPage)
                  .Select(c => new CPUCoolersListViewModel
                  {
                      Id = c.Id,
                      ImagePath = c.ImagePath,
                      Make = c.Make,
                      Model = c.Model,
-                     Price = c.Price
+                     Price = c.Price,
                  })
                  .ToList();
 
-            return View(CPUCoolers);
+            var cpuCoolersCount = cpuCoolersQuery.Count();
+
+            var coolerMakes = this.data
+                .CPUCoolers
+                .Select(c => c.Make)
+                .Distinct()
+                .ToList();
+
+            var cpuCoolersModel = new AllCPUCoolersQueryModel
+            {
+                Sorting = query.Sorting,
+                Makes = coolerMakes,
+                CPUCoolers = cpuCoolers,
+                SearchTerm = query.SearchTerm,
+                CurrentPage = query.CurrentPage,
+                TotalCPUCoolers = cpuCoolersCount,
+                Make = query.Make
+            };
+
+
+
+            return View(cpuCoolersModel);
+        }
+
+        public IActionResult Details(string id)
+        {
+            var cpuCooler = this.data.CPUCoolers.Where(c => c.Id == Int32.Parse(id)).Select(c => new CPUCoolersDetailsViewModel
+            {
+                ImagePath = c.ImagePath,
+                Make = c.Make,
+                Model = c.Model,
+                Price = c.Price,
+                ReleasedYear = c.ReleasedYear,
+                Airflow = c.Airflow,
+                RPM = c.RPM,
+                Noise = c.Noise,
+                Dimensions = c.Dimensions
+            }).FirstOrDefault();
+
+            if (cpuCooler == null)
+            {
+                return BadRequest();
+            }
+
+            return View(cpuCooler);
         }
     }
 }

@@ -17,7 +17,6 @@ namespace PCShop.Data
             var caseSeeder = new CaseSeeder(this.data);
             var cpuCoolerSeeder = new CPUCoolerSeeder(this.data);
             var cpuSeeder = new CPUSeeder(this.data);
-            var fanSeeder = new FanSeeder(this.data);
             var gpuSeeder = new GPUSeeder(this.data);
             var motherboardSeeder = new MotherboardSeeder(this.data);
             var psuSeeder = new PSUSeeder(this.data);
@@ -26,7 +25,6 @@ namespace PCShop.Data
             caseSeeder.start();
             cpuCoolerSeeder.start();
             cpuSeeder.start();
-            fanSeeder.start();
             gpuSeeder.start();
             motherboardSeeder.start();
             psuSeeder.start();

@@ -20,8 +20,6 @@ namespace PCShop.Data
 
         public DbSet<CPUCooler> CPUCoolers { get; init; }
 
-        public DbSet<Fan> Fans { get; init; }
-
         public DbSet<GPU> GPUs { get; init; }
 
         public DbSet<Motherboard> Motherboards { get; init; }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PCShop.Migrations
 {
-    public partial class CreateTables : Migration
+    public partial class TablesCreated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,6 +74,9 @@ namespace PCShop.Migrations
                     Make = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
+                    Airflow = table.Column<double>(type: "float", nullable: false),
+                    RPM = table.Column<int>(type: "int", nullable: false),
+                    Noise = table.Column<double>(type: "float", nullable: false),
                     ReleasedYear = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

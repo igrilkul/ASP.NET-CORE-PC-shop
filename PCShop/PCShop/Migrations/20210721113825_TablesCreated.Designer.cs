@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCShop.Data;
 
 namespace PCShop.Migrations
 {
     [DbContext(typeof(PCShopDbContext))]
-    partial class PCShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210721113825_TablesCreated")]
+    partial class TablesCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,9 +264,6 @@ namespace PCShop.Migrations
                     b.Property<double>("Airflow")
                         .HasColumnType("float");
 
-                    b.Property<string>("Dimensions")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
@@ -319,6 +318,33 @@ namespace PCShop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cases");
+                });
+
+            modelBuilder.Entity("PCShop.Data.Models.Fan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Make")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Model")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ReleasedYear")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Fans");
                 });
 
             modelBuilder.Entity("PCShop.Data.Models.GPU", b =>

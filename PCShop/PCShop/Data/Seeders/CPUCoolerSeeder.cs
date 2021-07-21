@@ -48,7 +48,11 @@ namespace PCShop.Data.Seeders
                 Make = "Noctua",
                 Model = "NH-U12S Chromax",
                 Price = 70,
-                ReleasedYear=2015
+                ReleasedYear=2015,
+                Airflow=54.90,
+                RPM = 1500,
+                Noise=22.4,
+                Dimensions = "158 x 125 x 71"
             });
 
             this.cpucoolers.Add(new CPUCooler
@@ -57,7 +61,11 @@ namespace PCShop.Data.Seeders
                 Make = "Arctic",
                 Model = "Freezer 34",
                 Price = 35,
-                ReleasedYear=2020
+                ReleasedYear=2020,
+                Airflow = 135.12,
+                RPM = 2100,
+                Noise = 28,
+                Dimensions = "124 x 157 x 103"
             });
         }
 
