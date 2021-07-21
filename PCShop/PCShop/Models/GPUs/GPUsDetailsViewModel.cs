@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-
-namespace PCShop.Data.Models
+namespace PCShop.Models.GPUs
 {
-    public class GPU
+    public class GPUsDetailsViewModel
     {
-        public int Id { get; init; }
-
         public string ImagePath { get; set; }
 
         public string Platform { get; set; }
@@ -14,7 +14,7 @@ namespace PCShop.Data.Models
         public string Make { get; set; }
 
         public string Model { get; set; }
-        [Required]
+
         public double Price { get; set; }
 
         public int BoostClock { get; set; }

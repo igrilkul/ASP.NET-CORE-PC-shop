@@ -48,7 +48,9 @@ namespace PCShop.Data.Seeders
                 Make = "MSI",
                 Model = "RTX 3060",
                 Price = 899,
-                ReleasedYear=2020
+                ReleasedYear=2020,
+                BoostClock=1800,
+                NumberOfFans=3
             });
 
             this.gpus.Add(new GPU
@@ -58,7 +60,9 @@ namespace PCShop.Data.Seeders
                 Make = "Powercolor",
                 Model = "Radeon RX 6700XT Red Devil",
                 Price = 870,
-                ReleasedYear=2021
+                ReleasedYear=2021,
+                BoostClock=1850,
+                NumberOfFans=3
             });
         }
     }
