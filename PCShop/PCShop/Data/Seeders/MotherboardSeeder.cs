@@ -46,10 +46,22 @@ namespace PCShop.Data.Seeders
             {
                 ImagePath = "https://p1.akcdn.net/full/757175553.msi-b450-tomahawk-max-ii.jpg",
                 Make = "MSI",
-                Platfom = "AMD",
+                Platform = "AMD",
                 Model = "B450 Tomahawk Max",
                 Price = 110,
+                Size = "ATX",
                 ReleasedYear=2019
+            });
+
+            this.mobos.Add(new Motherboard
+            {
+                ImagePath = "https://p1.akcdn.net/full/706209471.msi-b460m-a-pro.jpg",
+                Make = "MSI",
+                Platform = "Intel",
+                Model = "B460M-A PRO",
+                Price = 65,
+                Size = "mATX",
+                ReleasedYear = 2018
             });
         }
 
