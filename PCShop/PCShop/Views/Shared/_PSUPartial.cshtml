@@ -1,0 +1,17 @@
+﻿<li class="list-group-item">
+    <div class="row text-center">
+        <div class="col-md-3">
+            <img src="@Model.ImagePath" class="rounded float-left" alt="img-thumbnail" width="150px" />
+        </div>
+        <div class="col-md-3">
+            <h3 class="text-center">@Model.Make - @Model.Model</h3>
+            <p class="text-left"><strong>Power - </strong>@Model.Power</p>
+            <p class="text-left"><strong>Efficiency - </strong>@Model.Efficiency</p>
+            <p class="text-left"><strong>Price - </strong>@Model.Price€</p>
+            <a class="btn btn-primary"
+               asp-controller="PSUs"
+               asp-action="Details"
+               asp-route-id="@Model.Id">Details</a>
+        </div>
+    </div>
+</li>
