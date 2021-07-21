@@ -80,5 +80,27 @@ namespace PCShop.Controllers
 
             return View(cpusModel);
         }
+
+        public IActionResult Details(string id)
+        {
+            int idInt = Int32.Parse(id);
+            var cpu = this.data.CPUs.Where(c => c.Id == Int32.Parse(id)).Select(c => new CPUDetailsViewModel
+            {
+                ImagePath = c.ImagePath,
+                Platform = c.Platform,
+                Model = c.Model,
+                BoostFrequencies = c.BoostFrequencies,
+                TDP = c.TDP,
+                Price = c.Price,
+                ReleasedYear = c.ReleasedYear
+            }).FirstOrDefault();
+
+            if(cpu == null)
+            {
+                return BadRequest();
+            }
+
+            return View(cpu);
+        }
     }
 }
