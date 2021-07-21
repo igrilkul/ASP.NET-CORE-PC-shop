@@ -70,27 +70,20 @@
     </div>
 </div>
 
-<ul class="list-group list-group-flush">
-    @foreach (var cpu in Model.CPUs)
-    {
-        <li class="list-group-item">
-            <div class="row text-center">
-                <div class="col-md-3">
-                    <img src="@cpu.ImagePath" class="rounded float-left" alt="img-thumbnail" width="150px" />
-                </div>
-                <div class="col-md-3">
-                    <h3 class="text-center">@cpu.Platform - @cpu.Model</h3>
-                    <p class="text-left"><strong>Boost Frequencies - </strong>@cpu.BoostFrequencies</p>
-                    <p class="text-left"><strong>Price - </strong>@cpu.Price€</p>
-                    <a class="btn btn-primary"
-                    asp-controller="CPUs"
-                    asp-action="Details"
-                    asp-route-id="@cpu.Id"
-                    >Details</a>
-                </div>
-            </div>
-        </li>
-    }
-</ul>
+@if (!Model.CPUs.Any())
+{
+    <h2 class="text-center">No CPUs found.</h2>
+}
+
+@if (Model.CPUs.Any())
+{
+    <ul class="list-group list-group-flush">
+        @foreach (var cpu in Model.CPUs)
+        {
+            <partial name="_CPUPartial" model="cpu" />
+        }
+    </ul>
+}
+
 
 

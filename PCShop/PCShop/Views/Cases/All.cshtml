@@ -1,23 +1,102 @@
-﻿@model IEnumerable<PCShop.Models.Cases.CasesListViewModel>
+﻿@model AllCasesQueryModel
 
 @{
     ViewData["Title"] = "Cases";
 }
 
-<ul class="list-group list-group-flush">
-    @foreach (var caso in Model)
-    {
-    <li class="list-group-item">
-        <div class="row text-center">
-            <div class="col-md-3">
-                <img src="@caso.ImagePath" class="rounded float-left" alt="img-thumbnail" width="150px" />
-            </div>
-            <div class="col-md-3">
-                <h3 class="text-center">@caso.Make - @caso.Model</h3>
-                <p class="text-left"><strong>Size - </strong>@caso.Size</p>
-                <p class="text-left"><strong>Price - </strong>@caso.Price€</p>
+<form method="get">
+    <div class="row mb-5">
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label asp-for="Make"></label>
+                <select asp-for="Make" class="form-control">
+                    <option value="">All</option>
+                    @foreach (var make in Model.Makes)
+                    {
+                        <option value="@make">@make</option>
+                    }
+                </select>
             </div>
         </div>
-    </li>
+
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label asp-for="Size"></label>
+                <select asp-for="Size" class="form-control">
+                    <option value="">All</option>
+                    @foreach (var size in Model.Sizes)
+                    {
+                        <option value="@size">@size</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group col-md-4">
+            <label asp-for="SearchTerm"></label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="Fractal Design, Meshify C, Lian Li e.t.c."></input>
+        </div>
+
+        <div class="form-group col-md-3">
+            <div class="form-group">
+                <label asp-for="Sorting"></label>
+                <select asp-for="Sorting" class="form-control">
+                    <option value="0" selected>Year</option>
+                    <option value="1">Price</option>
+                    <option value="2">Size</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary d-none" value="Search" />
+
+
+</form>
+@{
+    var previousPage = Model.CurrentPage - 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
     }
-</ul>
+
+    var maxPage = Math.Ceiling((double)Model.TotalCases / AllCasesQueryModel.CasesPerPage);
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-controller="Cases"
+           asp-action="All"
+           asp-route-currentPage="@previousPage"
+           asp-route-make="@Model.Make"
+           asp-route-size="@Model.Size"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-sorting="@Model.Sorting"><<</a>
+    </div>
+    <div class="col-md-6">
+        <a class="btn btn-primary @(Model.CurrentPage == maxPage ? "disabled" : string.Empty)"
+           asp-controller="Cases"
+           asp-action="All"
+           asp-route-currentPage="@(Model.CurrentPage+1)"
+           asp-route-make="@Model.Make"
+           asp-route-size="@Model.Size"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-sorting="@Model.Sorting">>></a>
+    </div>
+</div>
+
+@if (!Model.Cases.Any())
+{
+    <h2 class="text-center">No CPUs found.</h2>
+}
+
+@if (Model.Cases.Any())
+{
+    <ul class="list-group list-group-flush">
+        @foreach (var caso in Model.Cases)
+        {
+            <partial name="_CasePartial" model="caso" />
+        }
+    </ul>
+}
