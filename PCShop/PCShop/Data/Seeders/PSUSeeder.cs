@@ -54,6 +54,27 @@ namespace PCShop.Data.Seeders
                 ReleasedYear=2020
             });
 
+            this.psus.Add(new PSU
+            {
+                ImagePath = "https://p1.akcdn.net/full/493165149.corsair-rmx-series-rm850x-2018-850w-gold-cp-9020180.jpg",
+                Make = "Corsair",
+                Model = "RM750x",
+                Power = 750,
+                Efficiency = "80+ Gold",
+                Price = 130,
+                ReleasedYear = 2020
+            });
+
+            this.psus.Add(new PSU
+            {
+                ImagePath = "https://p1.akcdn.net/full/493165149.corsair-rmx-series-rm850x-2018-850w-gold-cp-9020180.jpg",
+                Make = "Corsair",
+                Model = "RM650x",
+                Power = 650,
+                Efficiency = "80+ Gold",
+                Price = 110,
+                ReleasedYear = 2020
+            });
         }
     }
 }

@@ -1,13 +1,12 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-using System.ComponentModel.DataAnnotations;
-
-namespace PCShop.Data.Models
+namespace PCShop.Models.RAMs
 {
-    public class RAM
+    public class RAMsDetailsViewModel
     {
-        public int Id { get; init; }
-
         public string ImagePath { get; set; }
 
         public string Make { get; set; }
@@ -19,7 +18,7 @@ namespace PCShop.Data.Models
         public int NumberOfSticks { get; set; }
 
         public string Timings { get; set; }
-        [Required]
+
         public double Price { get; set; }
 
         public int Speed { get; set; }

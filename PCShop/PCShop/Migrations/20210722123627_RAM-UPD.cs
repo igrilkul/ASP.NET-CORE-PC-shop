@@ -2,22 +2,23 @@
 
 namespace PCShop.Migrations
 {
-    public partial class CpuCoolerUPD : Migration
+    public partial class RAMUPD : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Dimensions",
-                table: "CPUCoolers",
-                type: "nvarchar(max)",
-                nullable: true);
+            migrationBuilder.AddColumn<int>(
+                name: "Speed",
+                table: "RAMs",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Dimensions",
-                table: "CPUCoolers");
+                name: "Speed",
+                table: "RAMs");
         }
     }
 }

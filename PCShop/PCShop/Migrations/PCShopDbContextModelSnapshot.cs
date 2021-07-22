@@ -455,6 +455,9 @@ namespace PCShop.Migrations
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
+                    b.Property<int>("Speed")
+                        .HasColumnType("int");
+
                     b.Property<string>("Timings")
                         .HasColumnType("nvarchar(max)");
 

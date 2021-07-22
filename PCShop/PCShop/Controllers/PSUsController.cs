@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PCShop.Data;
 using PCShop.Models.PSUs;
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using System;
+
 using System.Threading.Tasks;
 
 namespace PCShop.Controllers
 {
-    public class PSUsController:Controller
+    public class PSUsController : Controller
     {
         private readonly PCShopDbContext data;
 
@@ -20,41 +20,41 @@ namespace PCShop.Controllers
 
         public IActionResult All([FromQuery] AllPSUsQueryModel query)
         {
-            var PSUsQuery = this.data.PSUs.AsQueryable();
+            var psusQuery = this.data.PSUs.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Make))
             {
-                PSUsQuery = PSUsQuery.Where(c => c.Make == query.Make);
+                psusQuery = psusQuery.Where(c => c.Make == query.Make);
             }
 
             if (!string.IsNullOrWhiteSpace(query.Efficiency))
             {
-                PSUsQuery = PSUsQuery.Where(c => c.Efficiency == query.Efficiency);
+                psusQuery = psusQuery.Where(c => c.Efficiency == query.Efficiency);
             }
 
-            if (!string.IsNullOrWhiteSpace(query.Power.ToString()))
+            if (!(query.Power==0))
             {
-                PSUsQuery = PSUsQuery.Where(c => c.Power == query.Power);
+                psusQuery = psusQuery.Where(c => c.Power == query.Power);
             }
 
             if (!string.IsNullOrWhiteSpace(query.SearchTerm))
             {
-                PSUsQuery = PSUsQuery.Where(c =>
+                psusQuery = psusQuery.Where(c =>
                 c.Make.ToLower().Contains(query.SearchTerm.ToLower())
                 || c.Model.ToLower().Contains(query.SearchTerm.ToLower())
                 || (c.Make + " " + c.Model).ToLower().Contains(query.SearchTerm.ToLower()));
             }
 
-            PSUsQuery = query.Sorting switch
+            psusQuery = query.Sorting switch
             {
-                PSUSorting.ReleasedYear => PSUsQuery.OrderByDescending(c => c.ReleasedYear),
-                PSUSorting.Price => PSUsQuery.OrderByDescending(c => c.Price),
-                PSUSorting.Power => PSUsQuery.OrderByDescending(c => c.Power),
-                PSUSorting.Efficiency => PSUsQuery.OrderByDescending(c => c.Efficiency),
-                _ => PSUsQuery.OrderByDescending(c => c.Id)
+                PSUSorting.ReleasedYear => psusQuery.OrderByDescending(c => c.ReleasedYear),
+                PSUSorting.Price => psusQuery.OrderByDescending(c => c.Price),
+                PSUSorting.Power => psusQuery.OrderByDescending(c => c.Power),
+                PSUSorting.Efficiency => psusQuery.OrderByDescending(c => c.Efficiency),
+                _ => psusQuery.OrderByDescending(c => c.Id)
             };
 
-            var psus = PSUsQuery
+            var psus = psusQuery
                 .Skip((query.CurrentPage - 1) * AllPSUsQueryModel.ItemsPerPage)
                 .Take(AllPSUsQueryModel.ItemsPerPage)
                  .Select(c => new PSUsListViewModel
@@ -69,7 +69,7 @@ namespace PCShop.Controllers
                  })
                  .ToList();
 
-            var totalCount = PSUsQuery.Count();
+            var totalCount = psusQuery.Count();
 
             var psusPowers = this.data
                 .PSUs

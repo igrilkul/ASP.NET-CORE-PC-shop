@@ -10,8 +10,8 @@ using PCShop.Data;
 namespace PCShop.Migrations
 {
     [DbContext(typeof(PCShopDbContext))]
-    [Migration("20210721124243_GPUTable-UPD")]
-    partial class GPUTableUPD
+    [Migration("20210722123627_RAM-UPD")]
+    partial class RAMUPD
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -379,7 +379,7 @@ namespace PCShop.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Platfom")
+                    b.Property<string>("Platform")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
@@ -387,6 +387,9 @@ namespace PCShop.Migrations
 
                     b.Property<int>("ReleasedYear")
                         .HasColumnType("int");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -452,6 +455,9 @@ namespace PCShop.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Speed")
                         .HasColumnType("int");
 
                     b.Property<string>("Timings")

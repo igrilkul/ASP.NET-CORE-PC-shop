@@ -10,8 +10,8 @@ using PCShop.Data;
 namespace PCShop.Migrations
 {
     [DbContext(typeof(PCShopDbContext))]
-    [Migration("20210721114210_CpuCooler-UPD")]
-    partial class CpuCoolerUPD
+    [Migration("20210722122314_AddTables")]
+    partial class AddTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -323,33 +323,6 @@ namespace PCShop.Migrations
                     b.ToTable("Cases");
                 });
 
-            modelBuilder.Entity("PCShop.Data.Models.Fan", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Make")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Model")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ReleasedYear")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Fans");
-                });
-
             modelBuilder.Entity("PCShop.Data.Models.GPU", b =>
                 {
                     b.Property<int>("Id")
@@ -357,6 +330,9 @@ namespace PCShop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BoostClock")
+                        .HasColumnType("int");
+
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
@@ -365,6 +341,9 @@ namespace PCShop.Migrations
 
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfFans")
+                        .HasColumnType("int");
 
                     b.Property<string>("Platform")
                         .HasColumnType("nvarchar(max)");
@@ -400,7 +379,7 @@ namespace PCShop.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Platfom")
+                    b.Property<string>("Platform")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
@@ -408,6 +387,9 @@ namespace PCShop.Migrations
 
                     b.Property<int>("ReleasedYear")
                         .HasColumnType("int");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

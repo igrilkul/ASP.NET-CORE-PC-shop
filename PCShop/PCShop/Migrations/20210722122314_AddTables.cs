@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PCShop.Migrations
 {
-    public partial class TablesCreated : Migration
+    public partial class AddTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,6 +77,7 @@ namespace PCShop.Migrations
                     Airflow = table.Column<double>(type: "float", nullable: false),
                     RPM = table.Column<int>(type: "int", nullable: false),
                     Noise = table.Column<double>(type: "float", nullable: false),
+                    Dimensions = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReleasedYear = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -104,23 +105,6 @@ namespace PCShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Fans",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Make = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    ReleasedYear = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Fans", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "GPUs",
                 columns: table => new
                 {
@@ -131,6 +115,8 @@ namespace PCShop.Migrations
                     Make = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
+                    BoostClock = table.Column<int>(type: "int", nullable: false),
+                    NumberOfFans = table.Column<int>(type: "int", nullable: false),
                     ReleasedYear = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -146,8 +132,9 @@ namespace PCShop.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Make = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Platfom = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Platform = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Size = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
                     ReleasedYear = table.Column<int>(type: "int", nullable: false)
                 },
@@ -366,9 +353,6 @@ namespace PCShop.Migrations
 
             migrationBuilder.DropTable(
                 name: "CPUs");
-
-            migrationBuilder.DropTable(
-                name: "Fans");
 
             migrationBuilder.DropTable(
                 name: "GPUs");
