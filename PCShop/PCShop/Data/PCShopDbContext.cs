@@ -27,5 +27,23 @@ namespace PCShop.Data
         public DbSet<PSU> PSUs { get; init; }
 
         public DbSet<RAM> RAMs { get; init; }
+
+        public DbSet<Category> Categories { get; init; }
+
+        public DbSet<Product> Products { get; init; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder
+                .Entity<Product>()
+                .HasOne(c => c.Category)
+                .WithMany(c => c.Products)
+                .HasForeignKey(c => c.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+           
+
+            base.OnModelCreating(builder);
+        }
     }
 }

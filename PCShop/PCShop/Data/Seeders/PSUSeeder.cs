@@ -9,12 +9,12 @@ namespace PCShop.Data.Seeders
     public class PSUSeeder : ISeeder
     {
         public PCShopDbContext data;
-        private List<PSU> psus;
+        private List<Product> psus;
 
         public PSUSeeder(PCShopDbContext data)
         {
             this.data = data;
-            this.psus = new List<PSU>();
+            this.psus = new List<Product>();
         }
 
         public void start()
@@ -28,22 +28,18 @@ namespace PCShop.Data.Seeders
 
         public bool checkData()
         {
-            if (this.data.PSUs.Any())
-            {
-                return true;
-            }
-            else return false;
+            return this.data.Products.Where(p => p.CategoryId == 6).Any();
         }
 
         public void seedData()
         {
-            this.data.PSUs.AddRange(this.psus);
+            this.data.Products.AddRange(this.psus);
             this.data.SaveChanges();
         }
 
         public void prepareData()
         {
-            this.psus.Add(new PSU
+            this.psus.Add(new Product
             {
                 ImagePath = "https://p1.akcdn.net/full/493165149.corsair-rmx-series-rm850x-2018-850w-gold-cp-9020180.jpg",
                 Make = "Corsair",
@@ -51,10 +47,11 @@ namespace PCShop.Data.Seeders
                 Power = 850,
                 Efficiency = "80+ Gold",
                 Price = 150,
-                ReleasedYear=2020
+                ReleasedYear=2020,
+                CategoryId = 6
             });
 
-            this.psus.Add(new PSU
+            this.psus.Add(new Product
             {
                 ImagePath = "https://p1.akcdn.net/full/493165149.corsair-rmx-series-rm850x-2018-850w-gold-cp-9020180.jpg",
                 Make = "Corsair",
@@ -62,10 +59,11 @@ namespace PCShop.Data.Seeders
                 Power = 750,
                 Efficiency = "80+ Gold",
                 Price = 130,
-                ReleasedYear = 2020
+                ReleasedYear = 2020,
+                CategoryId = 6
             });
 
-            this.psus.Add(new PSU
+            this.psus.Add(new Product
             {
                 ImagePath = "https://p1.akcdn.net/full/493165149.corsair-rmx-series-rm850x-2018-850w-gold-cp-9020180.jpg",
                 Make = "Corsair",
@@ -73,7 +71,8 @@ namespace PCShop.Data.Seeders
                 Power = 650,
                 Efficiency = "80+ Gold",
                 Price = 110,
-                ReleasedYear = 2020
+                ReleasedYear = 2020,
+                CategoryId = 6
             });
         }
     }

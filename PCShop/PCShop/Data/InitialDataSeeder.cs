@@ -14,6 +14,7 @@ namespace PCShop.Data
 
         public void StartSeeding()
         {
+            var categorySeeder = new CategorySeeder(this.data);
             var caseSeeder = new CaseSeeder(this.data);
             var cpuCoolerSeeder = new CPUCoolerSeeder(this.data);
             var cpuSeeder = new CPUSeeder(this.data);
@@ -22,6 +23,7 @@ namespace PCShop.Data
             var psuSeeder = new PSUSeeder(this.data);
             var ramSeeder = new RAMSeeder(this.data);
 
+            categorySeeder.start();
             caseSeeder.start();
             cpuCoolerSeeder.start();
             cpuSeeder.start();

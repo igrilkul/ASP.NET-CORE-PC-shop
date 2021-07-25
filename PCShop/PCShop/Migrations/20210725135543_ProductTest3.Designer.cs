@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCShop.Data;
 
 namespace PCShop.Migrations
 {
     [DbContext(typeof(PCShopDbContext))]
-    partial class PCShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210725135543_ProductTest3")]
+    partial class ProductTest3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -449,20 +451,8 @@ namespace PCShop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double?>("Airflow")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("Capacity")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Dimensions")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Efficiency")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
@@ -470,47 +460,20 @@ namespace PCShop.Migrations
                     b.Property<string>("Make")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MaxSpeed")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MinSpeed")
-                        .HasColumnType("int");
+                    b.Property<string>("Metadata")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Noise")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("NumberOfFans")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("NumberOfSticks")
-                        .HasColumnType("int");
-
                     b.Property<string>("Platform")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Power")
-                        .HasColumnType("int");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("RPM")
+                    b.Property<int>("ReleasedYear")
                         .HasColumnType("int");
-
-                    b.Property<int?>("ReleasedYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TDP")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Timings")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

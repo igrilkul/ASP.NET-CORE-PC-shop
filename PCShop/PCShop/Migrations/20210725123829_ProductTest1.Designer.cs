@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCShop.Data;
 
 namespace PCShop.Migrations
 {
     [DbContext(typeof(PCShopDbContext))]
-    partial class PCShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210725123829_ProductTest1")]
+    partial class ProductTest1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -321,21 +323,6 @@ namespace PCShop.Migrations
                     b.ToTable("Cases");
                 });
 
-            modelBuilder.Entity("PCShop.Data.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("PCShop.Data.Models.GPU", b =>
                 {
                     b.Property<int>("Id")
@@ -442,27 +429,12 @@ namespace PCShop.Migrations
                     b.ToTable("PSUs");
                 });
 
-            modelBuilder.Entity("PCShop.Data.Models.Product", b =>
+            modelBuilder.Entity("PCShop.Data.Models.ProductCPU", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double?>("Airflow")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Dimensions")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Efficiency")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
@@ -470,53 +442,24 @@ namespace PCShop.Migrations
                     b.Property<string>("Make")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MaxSpeed")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MinSpeed")
-                        .HasColumnType("int");
+                    b.Property<string>("Metadata")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Noise")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("NumberOfFans")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("NumberOfSticks")
-                        .HasColumnType("int");
-
                     b.Property<string>("Platform")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Power")
-                        .HasColumnType("int");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("RPM")
+                    b.Property<int>("ReleasedYear")
                         .HasColumnType("int");
-
-                    b.Property<int?>("ReleasedYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TDP")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Timings")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products");
+                    b.ToTable("ProductCPUs");
                 });
 
             modelBuilder.Entity("PCShop.Data.Models.RAM", b =>
@@ -607,22 +550,6 @@ namespace PCShop.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("PCShop.Data.Models.Product", b =>
-                {
-                    b.HasOne("PCShop.Data.Models.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("PCShop.Data.Models.Category", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

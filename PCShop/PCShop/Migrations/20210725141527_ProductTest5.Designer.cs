@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCShop.Data;
 
 namespace PCShop.Migrations
 {
     [DbContext(typeof(PCShopDbContext))]
-    partial class PCShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210725141527_ProductTest5")]
+    partial class ProductTest5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -452,9 +454,6 @@ namespace PCShop.Migrations
                     b.Property<double?>("Airflow")
                         .HasColumnType("float");
 
-                    b.Property<int?>("Capacity")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -469,12 +468,6 @@ namespace PCShop.Migrations
 
                     b.Property<string>("Make")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MaxSpeed")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MinSpeed")
-                        .HasColumnType("int");
 
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
@@ -500,10 +493,13 @@ namespace PCShop.Migrations
                     b.Property<int?>("RPM")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ReleasedYear")
+                    b.Property<int>("ReleasedYear")
                         .HasColumnType("int");
 
                     b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Speed")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TDP")

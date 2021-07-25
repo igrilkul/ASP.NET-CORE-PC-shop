@@ -8,12 +8,12 @@ namespace PCShop.Data.Seeders
     public class MotherboardSeeder : ISeeder
     {
         public PCShopDbContext data;
-        private List<Motherboard> mobos;
+        private List<Product> mobos;
 
         public MotherboardSeeder(PCShopDbContext data)
         {
             this.data = data;
-            this.mobos = new List<Motherboard>();
+            this.mobos = new List<Product>();
         }
 
         public void start()
@@ -27,22 +27,18 @@ namespace PCShop.Data.Seeders
 
         public bool checkData()
         {
-            if (this.data.Motherboards.Any())
-            {
-                return true;
-            }
-            else return false;
+            return this.data.Products.Where(p => p.CategoryId == 5).Any();
         }
 
         public void seedData()
         {
-            this.data.Motherboards.AddRange(this.mobos);
+            this.data.Products.AddRange(this.mobos);
             this.data.SaveChanges();
         }
 
         public void prepareData()
         {
-            this.mobos.Add(new Motherboard
+            this.mobos.Add(new Product
             {
                 ImagePath = "https://p1.akcdn.net/full/757175553.msi-b450-tomahawk-max-ii.jpg",
                 Make = "MSI",
@@ -50,10 +46,11 @@ namespace PCShop.Data.Seeders
                 Model = "B450 Tomahawk Max",
                 Price = 110,
                 Size = "ATX",
-                ReleasedYear=2019
+                ReleasedYear=2019,
+                CategoryId = 5
             });
 
-            this.mobos.Add(new Motherboard
+            this.mobos.Add(new Product
             {
                 ImagePath = "https://p1.akcdn.net/full/706209471.msi-b460m-a-pro.jpg",
                 Make = "MSI",
@@ -61,7 +58,8 @@ namespace PCShop.Data.Seeders
                 Model = "B460M-A PRO",
                 Price = 65,
                 Size = "mATX",
-                ReleasedYear = 2018
+                ReleasedYear = 2018,
+                CategoryId = 5
             });
         }
 
