@@ -17,10 +17,10 @@ namespace PCShop.Models.GPUs
 
         public double Price { get; set; }
 
-        public int BoostClock { get; set; }
+        public int? MinSpeed { get; set; }
 
-        public int NumberOfFans { get; set; }
+        public int? NumberOfFans { get; set; }
 
-        public int ReleasedYear { get; set; }
+        public int? ReleasedYear { get; set; }
     }
 }

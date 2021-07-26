@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PCShop.Data;
+using PCShop.Models;
 using PCShop.Models.Cases;
 using System;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace PCShop.Controllers
 
         public IActionResult All([FromQuery] AllCasesQueryModel query)
         {
-            var casesQuery = this.data.Cases.AsQueryable();
+            var casesQuery = this.data.Products.Where(p=>p.CategoryId==1).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Make))
             {
@@ -50,7 +51,7 @@ namespace PCShop.Controllers
             var cases = casesQuery
                 .Skip((query.CurrentPage - 1) * AllCasesQueryModel.CasesPerPage)
                 .Take(AllCasesQueryModel.CasesPerPage)
-                 .Select(c => new CasesListViewModel
+                 .Select(c => new ProductListViewModel
                  {
                      Id = c.Id,
                      ImagePath = c.ImagePath,
@@ -65,13 +66,13 @@ namespace PCShop.Controllers
             var casesCount = casesQuery.Count();
 
             var casesMakes = this.data
-                .Cases
+                .Products.Where(p=>p.CategoryId==1)
                 .Select(c => c.Make)
                 .Distinct()
                 .ToList();
 
             var casesSizes = this.data
-                .Cases
+                .Products.Where(p => p.CategoryId == 1)
                 .Select(c => c.Size)
                 .Distinct()
                 .ToList();
@@ -96,14 +97,14 @@ namespace PCShop.Controllers
         public IActionResult Details(string id)
         {
             int idInt = Int32.Parse(id);
-            var caso = this.data.Cases.Where(c => c.Id == Int32.Parse(id)).Select(c => new CasesDetailsViewModel
+            var caso = this.data.Products.Where(p=>p.CategoryId==1).Where(c => c.Id == Int32.Parse(id)).Select(c => new CasesDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Make = c.Make,
                 Model = c.Model,
                 Size = c.Size,
                 Price = c.Price,
-                ReleasedYear = c.ReleasedYear
+                ReleasedYear = (int)c.ReleasedYear
             }).FirstOrDefault();
 
             if (caso == null)

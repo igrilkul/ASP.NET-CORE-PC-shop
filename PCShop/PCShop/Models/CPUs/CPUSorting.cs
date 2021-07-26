@@ -8,7 +8,7 @@ namespace PCShop.Models.CPUs
     public enum CPUSorting
     {
         ReleasedYear = 0,
-        Price=1,
-        TDP=2
+        Price=1
+       
     }
 }

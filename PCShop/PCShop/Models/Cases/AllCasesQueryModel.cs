@@ -26,7 +26,7 @@ namespace PCShop.Models.Cases
 
         public CaseSorting Sorting { get; init; }
 
-        public IEnumerable<CasesListViewModel> Cases { get; set; }
+        public IEnumerable<ProductListViewModel> Cases { get; set; }
     }
 }
 

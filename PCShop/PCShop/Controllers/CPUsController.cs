@@ -3,6 +3,7 @@ using PCShop.Data;
 using PCShop.Models.CPUs;
 using System.Linq;
 using System;
+using PCShop.Models;
 
 namespace PCShop.Controllers
 {
@@ -18,7 +19,7 @@ namespace PCShop.Controllers
 
         public IActionResult All([FromQuery]AllCPUsQueryModel query)
         {
-            var cpusQuery = this.data.CPUs.AsQueryable();
+            var cpusQuery = this.data.Products.Where(p=>p.CategoryId==2).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Platform))
             {
@@ -37,22 +38,19 @@ namespace PCShop.Controllers
             {
                 CPUSorting.Price => cpusQuery.OrderByDescending(c => c.Price),
                 CPUSorting.ReleasedYear => cpusQuery.OrderByDescending(c => c.ReleasedYear),
-                CPUSorting.TDP => cpusQuery.OrderByDescending(c => c.TDP),
                 _=>cpusQuery.OrderByDescending(c=>c.Id)
             };
 
             var cpus = cpusQuery
                 .Skip((query.CurrentPage-1) * AllCPUsQueryModel.CPUsPerPage)
                 .Take(AllCPUsQueryModel.CPUsPerPage)
-                 .Select(c => new CPUsListViewModel
+                 .Select(c => new ProductListViewModel
                  {
                      Id = c.Id,
                      ImagePath = c.ImagePath,
                      Platform = c.Platform,
                      Model=c.Model,
-                     BoostFrequencies=c.BoostFrequencies,
                      Price=c.Price,
-                     TDP=c.TDP,
                      ReleasedYear=c.ReleasedYear
                  })
                  .ToList();
@@ -60,7 +58,7 @@ namespace PCShop.Controllers
             var cpusCount = cpusQuery.Count();
 
             var cpuPlatforms = this.data
-                .CPUs
+                .Products.Where(p => p.CategoryId == 2)
                 .Select(c => c.Platform)
                 .Distinct()
                 .ToList();
@@ -84,12 +82,13 @@ namespace PCShop.Controllers
         public IActionResult Details(string id)
         {
             int idInt = Int32.Parse(id);
-            var cpu = this.data.CPUs.Where(c => c.Id == Int32.Parse(id)).Select(c => new CPUDetailsViewModel
+            var cpu = this.data.Products.Where(p => p.CategoryId == 2).Where(c => c.Id == Int32.Parse(id)).Select(c => new CPUDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Platform = c.Platform,
                 Model = c.Model,
-                BoostFrequencies = c.BoostFrequencies,
+                MinSpeed = c.MinSpeed,
+                MaxSpeed = c.MaxSpeed,
                 TDP = c.TDP,
                 Price = c.Price,
                 ReleasedYear = c.ReleasedYear

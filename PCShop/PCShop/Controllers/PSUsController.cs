@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 
 using System.Threading.Tasks;
+using PCShop.Models;
 
 namespace PCShop.Controllers
 {
@@ -20,7 +21,7 @@ namespace PCShop.Controllers
 
         public IActionResult All([FromQuery] AllPSUsQueryModel query)
         {
-            var psusQuery = this.data.PSUs.AsQueryable();
+            var psusQuery = this.data.Products.Where(p => p.CategoryId == 6).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Make))
             {
@@ -32,7 +33,7 @@ namespace PCShop.Controllers
                 psusQuery = psusQuery.Where(c => c.Efficiency == query.Efficiency);
             }
 
-            if (!(query.Power==0))
+            if (!(query.Power==null))
             {
                 psusQuery = psusQuery.Where(c => c.Power == query.Power);
             }
@@ -57,7 +58,7 @@ namespace PCShop.Controllers
             var psus = psusQuery
                 .Skip((query.CurrentPage - 1) * AllPSUsQueryModel.ItemsPerPage)
                 .Take(AllPSUsQueryModel.ItemsPerPage)
-                 .Select(c => new PSUsListViewModel
+                 .Select(c => new ProductListViewModel
                  {
                      Id = c.Id,
                      ImagePath = c.ImagePath,
@@ -72,19 +73,19 @@ namespace PCShop.Controllers
             var totalCount = psusQuery.Count();
 
             var psusPowers = this.data
-                .PSUs
+                .Products.Where(p => p.CategoryId == 6)
                 .Select(c => c.Power)
                 .Distinct()
                 .ToList();
 
             var psusMakes = this.data
-                .PSUs
+                .Products.Where(p => p.CategoryId == 6)
                 .Select(c => c.Make)
                 .Distinct()
                 .ToList();
 
             var psusEfficiencies = this.data
-                .PSUs
+                .Products.Where(p => p.CategoryId == 6)
                 .Select(c => c.Efficiency)
                 .Distinct()
                 .ToList();
@@ -109,7 +110,7 @@ namespace PCShop.Controllers
 
         public IActionResult Details(string id)
         {
-            var psu = this.data.PSUs.Where(c => c.Id == Int32.Parse(id)).Select(c => new PSUsDetailsViewModel
+            var psu = this.data.Products.Where(p => p.CategoryId == 6).Where(c => c.Id == Int32.Parse(id)).Select(c => new PSUsDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Make = c.Make,

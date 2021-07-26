@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PCShop.Data;
+using PCShop.Models;
 using PCShop.Models.GPUs;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace PCShop.Controllers
 
         public IActionResult All([FromQuery] AllGPUsQueryModel query)
         {
-            var gpusQuery = this.data.GPUs.AsQueryable();
+            var gpusQuery = this.data.Products.Where(p=>p.CategoryId==4).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Platform))
             {
@@ -52,7 +53,7 @@ namespace PCShop.Controllers
             {
                 GPUSorting.ReleasedYear => gpusQuery.OrderByDescending(c => c.ReleasedYear),
                 GPUSorting.Price => gpusQuery.OrderByDescending(c => c.Price),
-                GPUSorting.BoostClock => gpusQuery.OrderByDescending(c => c.BoostClock),
+                GPUSorting.BoostClock => gpusQuery.OrderByDescending(c => c.MinSpeed),
                 GPUSorting.NumberOfFans => gpusQuery.OrderByDescending(c => c.NumberOfFans),                
                 _ => gpusQuery.OrderByDescending(c => c.Id)
             };
@@ -60,7 +61,7 @@ namespace PCShop.Controllers
             var gpus = gpusQuery
                 .Skip((query.CurrentPage - 1) * AllGPUsQueryModel.ItemsPerPage)
                 .Take(AllGPUsQueryModel.ItemsPerPage)
-                 .Select(c => new GPUsListViewModel
+                 .Select(c => new ProductListViewModel
                  {
                      Id = c.Id,
                      ImagePath = c.ImagePath,
@@ -74,19 +75,19 @@ namespace PCShop.Controllers
             var totalCount = gpusQuery.Count();
 
             var gpuPlatforms = this.data
-                .GPUs
+                .Products.Where(p=>p.CategoryId==4)
                 .Select(c => c.Platform)
                 .Distinct()
                 .ToList();
 
             var gpuMakes = this.data
-                .GPUs
+                .Products.Where(p => p.CategoryId == 4)
                 .Select(c => c.Make)
                 .Distinct()
                 .ToList();
 
             var gpuModels = this.data
-                .GPUs
+                .Products.Where(p => p.CategoryId == 4)
                 .Select(c => c.Model)
                 .Distinct()
                 .ToList();
@@ -113,7 +114,7 @@ namespace PCShop.Controllers
 
         public IActionResult Details(string id)
         {
-            var gpu = this.data.GPUs.Where(c => c.Id == Int32.Parse(id)).Select(c => new GPUsDetailsViewModel
+            var gpu = this.data.Products.Where(p => p.CategoryId == 4).Where(c => c.Id == Int32.Parse(id)).Select(c => new GPUsDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Platform = c.Platform,
@@ -122,7 +123,7 @@ namespace PCShop.Controllers
                 Price = c.Price,
                 ReleasedYear = c.ReleasedYear,
                 NumberOfFans = c.NumberOfFans,
-                BoostClock = c.BoostClock,
+                MinSpeed = c.MinSpeed,
             }).FirstOrDefault();
 
             if (gpu == null)

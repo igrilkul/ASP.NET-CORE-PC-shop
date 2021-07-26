@@ -13,12 +13,12 @@ namespace PCShop.Models.PSUs
 
         public string Model { get; set; }
 
-        public int Power { get; set; }
+        public int? Power { get; set; }
 
         public string Efficiency { get; set; }
         
         public double Price { get; set; }
 
-        public int ReleasedYear { get; set; }
+        public int? ReleasedYear { get; set; }
     }
 }

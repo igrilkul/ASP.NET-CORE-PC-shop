@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PCShop.Data;
+using PCShop.Models;
 using PCShop.Models.CPUCoolers;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace PCShop.Controllers
 
         public IActionResult All([FromQuery] AllCPUCoolersQueryModel query)
         {
-            var cpuCoolersQuery = this.data.CPUCoolers.AsQueryable();
+            var cpuCoolersQuery = this.data.Products.Where(p=>p.CategoryId==3).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Make))
             {
@@ -48,20 +49,21 @@ namespace PCShop.Controllers
             var cpuCoolers = cpuCoolersQuery
                 .Skip((query.CurrentPage - 1) * AllCPUCoolersQueryModel.ItemsPerPage)
                 .Take(AllCPUCoolersQueryModel.ItemsPerPage)
-                 .Select(c => new CPUCoolersListViewModel
+                 .Select(c => new ProductListViewModel
                  {
                      Id = c.Id,
                      ImagePath = c.ImagePath,
                      Make = c.Make,
                      Model = c.Model,
                      Price = c.Price,
+                     ReleasedYear = c.ReleasedYear
                  })
                  .ToList();
 
             var cpuCoolersCount = cpuCoolersQuery.Count();
 
             var coolerMakes = this.data
-                .CPUCoolers
+                .Products.Where(p => p.CategoryId == 3)
                 .Select(c => c.Make)
                 .Distinct()
                 .ToList();
@@ -84,7 +86,7 @@ namespace PCShop.Controllers
 
         public IActionResult Details(string id)
         {
-            var cpuCooler = this.data.CPUCoolers.Where(c => c.Id == Int32.Parse(id)).Select(c => new CPUCoolersDetailsViewModel
+            var cpuCooler = this.data.Products.Where(p=>p.CategoryId==3).Where(c => c.Id == Int32.Parse(id)).Select(c => new CPUCoolersDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Make = c.Make,

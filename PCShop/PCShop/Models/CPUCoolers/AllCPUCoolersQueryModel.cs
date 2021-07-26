@@ -23,6 +23,6 @@ namespace PCShop.Models.CPUCoolers
 
         public CPUCoolerSorting Sorting { get; init; }
 
-        public IEnumerable<CPUCoolersListViewModel> CPUCoolers { get; set; }
+        public IEnumerable<ProductListViewModel> CPUCoolers { get; set; }
     }
 }

@@ -28,6 +28,6 @@ namespace PCShop.Models.GPUs
 
         public GPUSorting Sorting { get; init; }
 
-        public IEnumerable<GPUsListViewModel> GPUs { get; set; }
+        public IEnumerable<ProductListViewModel> GPUs { get; set; }
     }
 }

@@ -17,17 +17,17 @@ namespace PCShop.Models.RAMs
         public string Make { get; init; }
         public IEnumerable<string> Makes { get; set; }
 
-        public int Speed { get; set; }
-        public IEnumerable<int> Speeds { get; set; }
+        public int? MinSpeed { get; set; }
+        public IEnumerable<int?> MinSpeeds { get; set; }
 
-        public int Size { get; set; }
-        public IEnumerable<int> Sizes { get; set; }
+        public int? Capacity { get; set; }
+        public IEnumerable<int?> Capacities { get; set; }
 
         [Display(Name = "Search")]
         public string SearchTerm { get; init; }
 
         public RAMSorting Sorting { get; init; }
 
-        public IEnumerable<RAMsListViewModel> RAMs { get; set; }
+        public IEnumerable<ProductListViewModel> RAMs { get; set; }
     }
 }

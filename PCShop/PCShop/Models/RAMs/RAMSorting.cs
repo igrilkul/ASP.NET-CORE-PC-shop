@@ -9,7 +9,7 @@ namespace PCShop.Models.RAMs
     {
         ReleasedYear = 0,
         Price = 1,
-        Size = 2,
+        Capacity = 2,
         Speed =3
     }
 }

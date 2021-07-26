@@ -28,9 +28,9 @@ namespace PCShop.Data.Models
 
         //Case, Motherboard, RAM
         public string Size { get; set; }
-        //CPU, GPU
-        public int? MinSpeed { get; set; }
         //CPU, GPU, RAM
+        public int? MinSpeed { get; set; }
+        //CPU
         public int? MaxSpeed { get; set; }
 
         //CPU, GPU

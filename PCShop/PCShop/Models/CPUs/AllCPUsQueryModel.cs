@@ -25,6 +25,6 @@ namespace PCShop.Models.CPUs
 
         public CPUSorting Sorting { get; init; }
 
-        public IEnumerable<CPUsListViewModel> CPUs { get; set; }
+        public IEnumerable<ProductListViewModel> CPUs { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace PCShop.Data.Seeders
                 NumberOfSticks = 2,
                 Timings = "16-18-18-36",
                 Price = 110,
-                MaxSpeed = 3200,
+                MinSpeed = 3200,
                 ReleasedYear=2018,
                 CategoryId = 7
             });
@@ -62,7 +62,7 @@ namespace PCShop.Data.Seeders
                 NumberOfSticks = 2,
                 Timings = "16-19-19-39",
                 Price = 140,
-                MaxSpeed = 3600,
+                MinSpeed = 3600,
                 ReleasedYear = 2017,
                 CategoryId = 7
             });

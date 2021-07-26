@@ -28,6 +28,6 @@ namespace PCShop.Models.Motherboards
 
         public MotherboardSorting Sorting { get; init; }
 
-        public IEnumerable<MotherboardsListViewModel> Motherboards { get; set; }
+        public IEnumerable<ProductListViewModel> Motherboards { get; set; }
     }
 }

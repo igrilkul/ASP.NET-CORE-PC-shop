@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PCShop.Data;
+using PCShop.Models;
 using PCShop.Models.RAMs;
 using System;
 using System.Collections.Generic;
@@ -20,21 +21,21 @@ namespace PCShop.Controllers
 
         public IActionResult All([FromQuery] AllRAMsQueryModel query)
         {
-            var ramsQuery = this.data.RAMs.AsQueryable();
+            var ramsQuery = this.data.Products.Where(p => p.CategoryId == 7).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Make))
             {
                 ramsQuery = ramsQuery.Where(c => c.Make == query.Make);
             }
 
-            if (!(query.Size == 0))
+            if (!(query.Capacity == null))
             {
-                ramsQuery = ramsQuery.Where(c => c.Size == query.Size);
+                ramsQuery = ramsQuery.Where(c => c.Capacity == query.Capacity);
             }
 
-            if (!(query.Speed == 0))
+            if (!(query.MinSpeed == null))
             {
-                ramsQuery = ramsQuery.Where(c => c.Speed == query.Speed);
+                ramsQuery = ramsQuery.Where(c => c.MinSpeed == query.MinSpeed);
             }
 
             if (!string.IsNullOrWhiteSpace(query.SearchTerm))
@@ -44,50 +45,51 @@ namespace PCShop.Controllers
                 || c.Model.ToLower().Contains(query.SearchTerm.ToLower())
                 || (c.Make + " " + c.Model).ToLower().Contains(query.SearchTerm.ToLower())
                 || (c.Make + " " + c.Model + " " + c.Size).ToLower().Contains(query.SearchTerm.ToLower())
-                || (c.Make + " " + c.Size).ToLower().Contains(query.SearchTerm.ToLower())
-                || (c.Model + " " + c.Size).ToLower().Contains(query.SearchTerm.ToLower()));
+                || (c.Make + " " + c.Capacity).ToLower().Contains(query.SearchTerm.ToLower())
+                || (c.Model + " " + c.Capacity).ToLower().Contains(query.SearchTerm.ToLower()));
             }
 
             ramsQuery = query.Sorting switch
             {
                 RAMSorting.ReleasedYear => ramsQuery.OrderByDescending(c => c.ReleasedYear),
                 RAMSorting.Price => ramsQuery.OrderByDescending(c => c.Price),
-                RAMSorting.Size => ramsQuery.OrderByDescending(c => c.Size),
-                RAMSorting.Speed => ramsQuery.OrderByDescending(c => c.Speed),
+                RAMSorting.Capacity => ramsQuery.OrderByDescending(c => c.Capacity),
+                RAMSorting.Speed => ramsQuery.OrderByDescending(c => c.MinSpeed),
                 _ => ramsQuery.OrderByDescending(c => c.Id)
             };
 
             var rams = ramsQuery
                 .Skip((query.CurrentPage - 1) * AllRAMsQueryModel.ItemsPerPage)
                 .Take(AllRAMsQueryModel.ItemsPerPage)
-                 .Select(c => new RAMsListViewModel
+                 .Select(c => new ProductListViewModel
                  {
                      Id = c.Id,
                      ImagePath = c.ImagePath,
                      Make = c.Make,
                      Model = c.Model,
                      Price = c.Price,
-                     Size = c.Size
+                     Capacity = c.Capacity,
+                     MinSpeed = c.MinSpeed
                  })
                  .ToList();
 
             var totalCount = ramsQuery.Count();
 
             var ramsSpeeds = this.data
-                .RAMs
-                .Select(c => c.Speed)
+                .Products.Where(p => p.CategoryId == 7)
+                .Select(c => c.MinSpeed)
                 .Distinct()
                 .ToList();
 
             var ramsMakes = this.data
-                .RAMs
+                .Products.Where(p => p.CategoryId == 7)
                 .Select(c => c.Make)
                 .Distinct()
                 .ToList();
 
-            var ramsSizes = this.data
-                .RAMs
-                .Select(c => c.Size)
+            var ramCapacities = this.data
+                .Products.Where(p => p.CategoryId == 7)
+                .Select(c => c.Capacity)
                 .Distinct()
                 .ToList();
 
@@ -95,8 +97,8 @@ namespace PCShop.Controllers
             {
                 Sorting = query.Sorting,
                 Makes = ramsMakes,
-                Sizes = ramsSizes,
-                Speeds = ramsSpeeds,
+                Capacities = ramCapacities,
+                MinSpeeds = ramsSpeeds,
                 RAMs = rams,
                 SearchTerm = query.SearchTerm,
                 CurrentPage = query.CurrentPage,
@@ -111,13 +113,13 @@ namespace PCShop.Controllers
 
         public IActionResult Details(string id)
         {
-            var ram = this.data.RAMs.Where(c => c.Id == Int32.Parse(id)).Select(c => new RAMsDetailsViewModel
+            var ram = this.data.Products.Where(p => p.CategoryId == 7).Where(c => c.Id == Int32.Parse(id)).Select(c => new RAMsDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Make = c.Make,
                 Model = c.Model,
-                Size = c.Size,
-                Speed = c.Speed,
+                Capacity = c.Capacity,
+                MinSpeed = c.MinSpeed,
                 Timings = c.Timings,
                 NumberOfSticks = c.NumberOfSticks,
                 Price = c.Price,

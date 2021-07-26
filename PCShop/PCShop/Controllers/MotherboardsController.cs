@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PCShop.Data;
+using PCShop.Models;
 using PCShop.Models.Motherboards;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace PCShop.Controllers
 
         public IActionResult All([FromQuery] AllMotherboardsQueryModel query)
         {
-            var motherboardsQuery = this.data.Motherboards.AsQueryable();
+            var motherboardsQuery = this.data.Products.Where(p => p.CategoryId == 5).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Platform))
             {
@@ -59,7 +60,7 @@ namespace PCShop.Controllers
             var motherboards = motherboardsQuery
                 .Skip((query.CurrentPage - 1) * AllMotherboardsQueryModel.ItemsPerPage)
                 .Take(AllMotherboardsQueryModel.ItemsPerPage)
-                 .Select(c => new MotherboardsListViewModel
+                 .Select(c => new ProductListViewModel
                  {
                      Id = c.Id,
                      ImagePath = c.ImagePath,
@@ -73,19 +74,19 @@ namespace PCShop.Controllers
             var totalCount = motherboardsQuery.Count();
 
             var motherboardsPlatforms = this.data
-                .Motherboards
+                .Products.Where(p => p.CategoryId == 5)
                 .Select(c => c.Platform)
                 .Distinct()
                 .ToList();
 
             var motherboardsMakes = this.data
-                .Motherboards
+                .Products.Where(p => p.CategoryId == 5)
                 .Select(c => c.Make)
                 .Distinct()
                 .ToList();
 
             var motherboardsModels = this.data
-                .Motherboards
+                .Products.Where(p => p.CategoryId == 5)
                 .Select(c => c.Model)
                 .Distinct()
                 .ToList();
@@ -112,7 +113,7 @@ namespace PCShop.Controllers
 
         public IActionResult Details(string id)
         {
-            var motherboard = this.data.Motherboards.Where(c => c.Id == Int32.Parse(id)).Select(c => new MotherboardsDetailsViewModel
+            var motherboard = this.data.Products.Where(p => p.CategoryId == 5).Where(c => c.Id == Int32.Parse(id)).Select(c => new MotherboardsDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Platform = c.Platform,

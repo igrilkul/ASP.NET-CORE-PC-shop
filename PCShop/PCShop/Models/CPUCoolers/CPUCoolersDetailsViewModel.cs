@@ -14,16 +14,16 @@ namespace PCShop.Models.CPUCoolers
 
         public string Model { get; set; }
         
-        public double Price { get; set; }
+        public double? Price { get; set; }
 
-        public double Airflow { get; set; }
+        public double? Airflow { get; set; }
 
-        public int RPM { get; set; }
+        public int? RPM { get; set; }
 
-        public double Noise { get; set; }
+        public double? Noise { get; set; }
 
         public string Dimensions { get; set; }
 
-        public int ReleasedYear { get; set; }
+        public int? ReleasedYear { get; set; }
     }
 }

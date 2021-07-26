@@ -21,6 +21,6 @@ namespace PCShop.Models.Motherboards
         
         public double Price { get; set; }
 
-        public int ReleasedYear { get; set; }
+        public int? ReleasedYear { get; set; }
     }
 }

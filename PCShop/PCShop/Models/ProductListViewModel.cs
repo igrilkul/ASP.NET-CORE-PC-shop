@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PCShop.Models.GPUs
+namespace PCShop.Models
 {
-    public class GPUsListViewModel
+    public class ProductListViewModel
     {
         public int Id { get; init; }
 
@@ -18,5 +18,17 @@ namespace PCShop.Models.GPUs
         public string Model { get; init; }
 
         public double Price { get; init; }
+
+        public string Size { get; init; }
+
+        public int? MinSpeed { get; init; }
+
+        public int? Capacity { get; init; }
+
+        public int? ReleasedYear { get; init; }
+
+        public int? Power { get; init; }
+
+        public string Efficiency { get; init; }
     }
 }

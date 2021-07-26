@@ -20,8 +20,8 @@ namespace PCShop.Models.PSUs
         public string Efficiency { get; set; }
         public IEnumerable<string> Efficiencies { get; set; }
 
-        public int Power { get; set; }
-        public IEnumerable<int> Powers { get; set; }
+        public int? Power { get; set; }
+        public IEnumerable<int?> Powers { get; set; }
 
 
         [Display(Name = "Search")]
@@ -29,6 +29,6 @@ namespace PCShop.Models.PSUs
 
         public PSUSorting Sorting { get; init; }
 
-        public IEnumerable<PSUsListViewModel> PSUs { get; set; }
+        public IEnumerable<ProductListViewModel> PSUs { get; set; }
     }
 }

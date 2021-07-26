@@ -15,12 +15,15 @@ namespace PCShop.Models.CPUs
 
         public string Model { get; set; }
 
-        public string BoostFrequencies { get; set; }
+        public int? MinSpeed { get; set; }
 
-        public int TDP { get; set; }
+        public int? MaxSpeed { get; set; }
+
+
+        public int? TDP { get; set; }
         
         public double Price { get; set; }
 
-        public int ReleasedYear { get; set; }
+        public int? ReleasedYear { get; set; }
     }
 }

@@ -21,10 +21,10 @@
 
         <div class="form-group col-md-4">
             <div class="form-group">
-                <label asp-for="Speed"></label>
-                <select asp-for="Speed" class="form-control">
+                <label asp-for="MinSpeed"></label>
+                <select asp-for="MinSpeed" class="form-control">
                     <option value="">All</option>
-                    @foreach (var speed in Model.Speeds)
+                    @foreach (var speed in Model.MinSpeeds)
                     {
                         <option value="@speed">@speed</option>
                     }
@@ -34,12 +34,12 @@
 
         <div class="form-group col-md-4">
             <div class="form-group">
-                <label asp-for="Size"></label>
-                <select asp-for="Size" class="form-control">
+                <label asp-for="Capacity"></label>
+                <select asp-for="Capacity" class="form-control">
                     <option value="">All</option>
-                    @foreach (var size in Model.Sizes)
+                    @foreach (var capacity in Model.Capacities)
                     {
-                        <option value="@size">@size</option>
+                        <option value="@capacity">@capacity</option>
                     }
                 </select>
             </div>
@@ -56,7 +56,7 @@
                 <select asp-for="Sorting" class="form-control">
                     <option value="0" selected>Year</option>
                     <option value="1">Price</option>
-                    <option value="2">Size</option>
+                    <option value="2">Capacity</option>
                     <option value="3">Speed</option>
                 </select>
             </div>
@@ -83,8 +83,8 @@
            asp-action="All"
            asp-route-currentPage="@previousPage"
            asp-route-make="@Model.Make"
-           asp-route-speed="@Model.Speed"
-           asp-route-size="@Model.Size"
+           asp-route-speed="@Model.MinSpeed"
+           asp-route-size="@Model.Capacity"
            asp-route-searchTerm="@Model.SearchTerm"
            asp-route-sorting="@Model.Sorting"><<</a>
     </div>
@@ -94,8 +94,8 @@
            asp-action="All"
            asp-route-currentPage="@(Model.CurrentPage+1)"
            asp-route-make="@Model.Make"
-           asp-route-speed="@Model.Speed"
-           asp-route-size="@Model.Size"
+           asp-route-speed="@Model.MinSpeed"
+           asp-route-size="@Model.Capacity"
            asp-route-searchTerm="@Model.SearchTerm"
            asp-route-sorting="@Model.Sorting">>></a>
     </div>
