@@ -11,6 +11,7 @@ namespace PCShop.Controllers
 {
     public class HomeController : Controller
     {
+        //[AutoValidateAntiforgeryToken]
         public IActionResult Index()
         {
             return View();

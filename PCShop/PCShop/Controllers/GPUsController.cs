@@ -64,6 +64,7 @@ namespace PCShop.Controllers
                  .Select(c => new ProductListViewModel
                  {
                      Id = c.Id,
+                     CategoryId = c.CategoryId,
                      ImagePath = c.ImagePath,
                      Platform = c.Platform,
                      Make = c.Make,

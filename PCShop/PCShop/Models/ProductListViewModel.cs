@@ -9,6 +9,8 @@ namespace PCShop.Models
     {
         public int Id { get; init; }
 
+        public int CategoryId { get; init; }
+
         public string ImagePath { get; init; }
 
         public string Platform { get; init; }
