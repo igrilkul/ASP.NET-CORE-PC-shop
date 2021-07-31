@@ -98,7 +98,7 @@ namespace PCShop.Controllers
         public IActionResult Details(string id)
         {
             int idInt = Int32.Parse(id);
-            var caso = this.data.Products.Where(p=>p.CategoryId==1).Where(c => c.Id == Int32.Parse(id)).Select(c => new CasesDetailsViewModel
+            var caso = this.data.Products.Where(p=>p.CategoryId==1).Where(c => c.Id == Int32.Parse(id)).Select(c => new ProductDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Make = c.Make,

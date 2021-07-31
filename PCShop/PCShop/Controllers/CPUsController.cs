@@ -83,7 +83,7 @@ namespace PCShop.Controllers
         public IActionResult Details(string id)
         {
             int idInt = Int32.Parse(id);
-            var cpu = this.data.Products.Where(p => p.CategoryId == 2).Where(c => c.Id == Int32.Parse(id)).Select(c => new CPUDetailsViewModel
+            var cpu = this.data.Products.Where(p => p.CategoryId == 2).Where(c => c.Id == Int32.Parse(id)).Select(c => new ProductDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Platform = c.Platform,

@@ -114,7 +114,7 @@ namespace PCShop.Controllers
 
         public IActionResult Details(string id)
         {
-            var ram = this.data.Products.Where(p => p.CategoryId == 7).Where(c => c.Id == Int32.Parse(id)).Select(c => new RAMsDetailsViewModel
+            var ram = this.data.Products.Where(p => p.CategoryId == 7).Where(c => c.Id == Int32.Parse(id)).Select(c => new ProductDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Make = c.Make,

@@ -87,7 +87,7 @@ namespace PCShop.Controllers
 
         public IActionResult Details(string id)
         {
-            var cpuCooler = this.data.Products.Where(p=>p.CategoryId==3).Where(c => c.Id == Int32.Parse(id)).Select(c => new CPUCoolersDetailsViewModel
+            var cpuCooler = this.data.Products.Where(p=>p.CategoryId==3).Where(c => c.Id == Int32.Parse(id)).Select(c => new ProductDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Make = c.Make,

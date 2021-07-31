@@ -115,7 +115,7 @@ namespace PCShop.Controllers
 
         public IActionResult Details(string id)
         {
-            var gpu = this.data.Products.Where(p => p.CategoryId == 4).Where(c => c.Id == Int32.Parse(id)).Select(c => new GPUsDetailsViewModel
+            var gpu = this.data.Products.Where(p => p.CategoryId == 4).Where(c => c.Id == Int32.Parse(id)).Select(c => new ProductDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Platform = c.Platform,

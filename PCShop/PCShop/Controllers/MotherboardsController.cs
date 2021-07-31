@@ -115,7 +115,7 @@ namespace PCShop.Controllers
 
         public IActionResult Details(string id)
         {
-            var motherboard = this.data.Products.Where(p => p.CategoryId == 5).Where(c => c.Id == Int32.Parse(id)).Select(c => new MotherboardsDetailsViewModel
+            var motherboard = this.data.Products.Where(p => p.CategoryId == 5).Where(c => c.Id == Int32.Parse(id)).Select(c => new ProductDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Platform = c.Platform,

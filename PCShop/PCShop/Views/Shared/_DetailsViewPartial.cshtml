@@ -1,0 +1,95 @@
+﻿@model ProductDetailsViewModel
+
+<li class="list-group-item">
+    <div class="row text-center">
+        <div class="col-md-3">
+            <img src="@Model.ImagePath" class="rounded float-left" alt="img-thumbnail" width="150px" />
+        </div>
+        <div class="col-md-3">
+            <h3 class="text-center">@Model.Make - @Model.Model</h3>
+            @{
+                if (!(Model.Platform == null))
+                {
+                    <p class="text-left"><strong>Platform - </strong>@Model.Platform</p>
+                }
+
+                if (!(Model.Power == null))
+                {
+                    <p class="text-left"><strong>Power - </strong>@Model.Power W</p>
+                }
+
+                if (!(Model.Efficiency == null))
+                {
+                    <p class="text-left"><strong>Efficiency - </strong>@Model.Efficiency</p>
+                }
+
+
+                if (!(Model.Size == null))
+                {
+                    <p class="text-left"><strong>Size - </strong>@Model.Size</p>
+                }
+
+                if (!(Model.Capacity == null))
+                {
+                    <p class="text-left"><strong>Capacity - </strong>@Model.Capacity GB</p>
+                }
+
+
+                if (!(Model.MinSpeed == null))
+                {
+                    if (!(Model.MaxSpeed == null))
+                    {
+                        <p class="text-left"><strong>Speed - </strong>@Model.MinSpeed - @Model.MaxSpeed Mhz</p>
+                    }
+                    else
+                    {
+                        <p class="text-left"><strong>Speed - </strong>@Model.MinSpeed Mhz</p>
+                    }
+                }
+
+                if (!(Model.TDP == null))
+                {
+                    <p class="text-left"><strong>TDP - </strong>@Model.TDP W</p>
+                }
+
+                if (!(Model.NumberOfFans == null))
+                {
+                    <p class="text-left"><strong>Number of Fans - </strong>@Model.NumberOfFans</p>
+                }
+
+                if (!(Model.NumberOfSticks == null))
+                {
+                    <p class="text-left"><strong>Number of Sticks - </strong>@Model.NumberOfSticks</p>
+                }
+
+                if (!(Model.Airflow == null))
+                {
+                    <p class="text-left"><strong>Airflow - </strong>@Model.Airflow</p>
+                }
+
+                if (!(Model.RPM == null))
+                {
+                    <p class="text-left"><strong>RPM - </strong>@Model.RPM</p>
+                }
+
+                if (!(Model.Noise == null))
+                {
+                    <p class="text-left"><strong>Noise - </strong>@Model.Noise db </p>
+                }
+
+                if (!(Model.Dimensions == null))
+                {
+                    <p class="text-left"><strong>Dimensions - </strong>@Model.Dimensions</p>
+                }
+
+                if (!(Model.Timings == null))
+                {
+                    <p class="text-left"><strong>Timings - </strong>@Model.Timings</p>
+                }
+
+            }
+            <p class="text-left"><strong>Year Released - </strong>@Model.ReleasedYear</p>
+            <p class="text-left"><strong>Price - </strong>@Model.Price€</p>
+        </div>
+    </div>
+</li>

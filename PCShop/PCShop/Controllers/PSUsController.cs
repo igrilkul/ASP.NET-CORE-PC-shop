@@ -111,7 +111,7 @@ namespace PCShop.Controllers
 
         public IActionResult Details(string id)
         {
-            var psu = this.data.Products.Where(p => p.CategoryId == 6).Where(c => c.Id == Int32.Parse(id)).Select(c => new PSUsDetailsViewModel
+            var psu = this.data.Products.Where(p => p.CategoryId == 6).Where(c => c.Id == Int32.Parse(id)).Select(c => new ProductDetailsViewModel
             {
                 ImagePath = c.ImagePath,
                 Make = c.Make,
