@@ -1,0 +1,62 @@
+﻿@model OrderInputViewModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="FirstName">First Name</label>
+                <input asp-for="FirstName" class="form-control">
+                <span asp-validation-for="FirstName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName">Last Name</label>
+                <input asp-for="LastName" class="form-control">
+                <span asp-validation-for="LastName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile">Phone Number</label>
+                <input asp-for="Mobile" class="form-control" placeholder="+359 ..."></input>
+                <span asp-validation-for="Mobile" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Email Address</label>
+                <input asp-for="Email" class="form-control" placeholder="personal@mail.com">
+                <span asp-validation-for="Email" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address1">Address 1</label>
+                <textarea asp-for="Address1" class="form-control" placeholder="ul Ivan Boris 5"></textarea>
+                <span asp-validation-for="Address1" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address2">Address 2</label>
+                <textarea asp-for="Address2" class="form-control" placeholder="ul Ivan Boris 7"></textarea>
+                <span asp-validation-for="Address2" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City">City</label>
+                <input asp-for="City" class="form-control" placeholder="Plovdiv">
+                <span asp-validation-for="City" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Province">Province</label>
+                <input asp-for="Province" class="form-control" placeholder="Plovdiv">
+                <span asp-validation-for="Province" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country">Country</label>
+                <input asp-for="Country" class="form-control" placeholder="Bulgaria">
+                <span asp-validation-for="Country" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode">Postal Code</label>
+                <input asp-for="PostalCode" class="form-control" placeholder="4000">
+                <span asp-validation-for="PostalCode" class="small text-danger"></span>
+            </div>
+
+            <input class="btn btn-primary mt-3" type="submit" value="Submit" />
+        </form>
+    </div>
+</div>

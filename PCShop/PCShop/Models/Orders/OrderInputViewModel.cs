@@ -3,25 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PCShop.Data.Models
+namespace PCShop.Models.Orders
 {
-    public class Order
+    public class OrderInputViewModel
     {
-        public int Id { get; init; }
-
-        public string UserId { get; init; }
-        public User User { get; init; }
-
-        public string Status { get; set; }
-
-        public float baseTotal { get; init; }
-
-        public float Tax { get; init; }
-
-        public float Discount { get; init; }
-
-        public float GrandTotal { get; init; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -41,10 +26,5 @@ namespace PCShop.Data.Models
         public string Country { get; set; }
 
         public string PostalCode { get; set; }
-
-        public DateTime CreatedAt { get; init; }
-
-        public IEnumerable<Order_item> Items { get; init; } = new List<Order_item>();
-
     }
 }

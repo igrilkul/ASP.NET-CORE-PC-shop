@@ -10,5 +10,7 @@ namespace PCShop.Data
     public class User :IdentityUser
     {
         public Cart Cart { get; init; }
+
+        public ICollection<Order> Orders { get; init; }
     }
 }

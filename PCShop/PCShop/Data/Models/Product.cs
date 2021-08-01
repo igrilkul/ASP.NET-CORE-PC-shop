@@ -24,6 +24,8 @@ namespace PCShop.Data.Models
         [Required]
         public double Price { get; set; }
 
+        public double Discount { get; set; } = 0;
+
         public int? ReleasedYear { get; set; }
 
         //Case, Motherboard, RAM
@@ -57,6 +59,8 @@ namespace PCShop.Data.Models
         public int? Capacity { get; set; }
 
         public ICollection<Cart_item> Cart_Item { get; set; }
+
+        public ICollection<Order_item> Order_Item { get; set; }
 
     }
 }

@@ -22,7 +22,10 @@ namespace PCShop.Data
 
         public DbSet<Cart_item> CartItems { get; init; }
 
-        //public DbSet<User> Users { get; init; }
+        public DbSet<Order> Orders { get; init; }
+
+        public DbSet<Order_item> Orderitems { get; init; }
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -33,6 +36,8 @@ namespace PCShop.Data
                 .WithMany(c => c.Products)
                 .HasForeignKey(c => c.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            //Cart
 
             builder
                 .Entity<Cart>()
@@ -59,7 +64,34 @@ namespace PCShop.Data
                  .HasForeignKey(c => c.ProductId)
                  .OnDelete(DeleteBehavior.Cascade);
 
-           
+            //Order
+
+            builder
+               .Entity<Order>()
+               .HasOne(c => c.User)
+               .WithMany(c => c.Orders)
+               .HasForeignKey(c => c.UserId);
+
+            builder
+                .Entity<Order>()
+                .HasMany(c => c.Items)
+                .WithOne(c => c.Order)
+                .HasForeignKey(c => c.OrderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Order_item>()
+                .HasKey(ci => new { ci.Id, ci.OrderId });
+
+
+            builder
+                 .Entity<Order_item>()
+                 .HasOne(c => c.Product)
+                 .WithMany(c => c.Order_Item)
+                 .HasForeignKey(c => c.ProductId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+
 
             base.OnModelCreating(builder);
         }
