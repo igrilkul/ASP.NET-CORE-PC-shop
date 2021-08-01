@@ -56,5 +56,7 @@ namespace PCShop.Data.Models
 
         public int? Capacity { get; set; }
 
+        public ICollection<Cart_item> Cart_Item { get; set; }
+
     }
 }

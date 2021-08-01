@@ -31,6 +31,8 @@ namespace PCShop.Models
 
         public int? Power { get; init; }
 
+        public int? Quantity { get; set; }
+
         public string Efficiency { get; init; }
     }
 }

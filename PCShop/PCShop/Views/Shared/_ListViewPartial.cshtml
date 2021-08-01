@@ -1,4 +1,6 @@
-﻿@{  
+﻿@{
+    var pageName = ViewContext.RouteData.Values["controller"].ToString();
+
     var controllerType = "";
     switch (@Model.CategoryId)
     {
@@ -31,8 +33,8 @@
             break;
 
     }
-    }
-<li class="list-group-item">
+}
+<li onload=myFunction(@pageName) class="list-group-item">
     <div class="row text-center">
         <div class="col-md-3">
             <img src="@Model.ImagePath" class="rounded float-left" alt="img-thumbnail" width="150px" />
@@ -78,6 +80,31 @@
                asp-controller="@controllerType"
                asp-action="Details"
                asp-route-id="@Model.Id">Details</a>
+            <a id="cart"
+               class="btn btn-primary"
+               asp-controller="Carts"
+               asp-action="AddToCart"
+               asp-route-controllerType="@controllerType"
+               asp-route-id="@Model.Id">Add to Cart</a>
         </div>
     </div>
 </li>
+
+<style>
+    #cart{
+       @(pageName == "Carts"?"display : none;":"")
+    }
+</style>
+
+<script>
+
+    function myFunction(pageName2) {
+        if (pageName == "Carts") {
+            var myobj = document.getElementById("cart");
+            myobj.remove();
+        }
+
+    }
+
+
+</script>
