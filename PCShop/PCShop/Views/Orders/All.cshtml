@@ -1,0 +1,46 @@
+﻿@model IEnumerable<OrdersListViewModel>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">No Orders made.</h2>
+}
+
+@if (Model.Any())
+{
+    <ul class="list-group list-group-flush">
+            <table class="data-table">
+                <thead>
+                    <tr class="order-first">
+                        <th>Order #</th>
+                        <th>Date</th>
+                        <th>Recipient</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th class="align-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.OrderId</td>
+                            <td>@order.CreatedAt</td>
+                            <td>@order.Recipient</td>
+                            <td>@order.GrandTotal</td>
+                            <td>@order.Status</td>
+                            <td>
+                                <a class="btn btn-info"
+                                   asp-controller="Orders"
+                                   asp-action="Details"
+                                   asp-route-id="@order.OrderId">Details</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+            </table>
+    </ul>
+}

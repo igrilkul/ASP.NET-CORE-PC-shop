@@ -23,6 +23,109 @@ namespace PCShop.Controllers
         }
 
         [Authorize]
+        public IActionResult All()
+        {
+            var currentUserId = GetUserId();
+
+            var ordersList = this.data.Orders
+                .Where(c => c.UserId == currentUserId)
+                .Select(c => new OrdersListViewModel
+                {
+                    OrderId = c.Id,
+                    CreatedAt = c.CreatedAt,
+                    Recipient = c.FirstName + " " + c.LastName,
+                    GrandTotal = c.GrandTotal,
+                    Status = c.Status
+                }).ToList();
+
+            return View(ordersList);
+        }
+
+        [Authorize]
+        public IActionResult Details(string id)
+        {
+            var orderId = Int32.Parse(id);
+            var currentUserId = GetUserId();
+
+            var orderQuery = this.data.Orders.Where(c => c.Id == orderId).AsQueryable();
+            var order = orderQuery.FirstOrDefault();
+            
+            if(order == null)
+            {
+                return BadRequest();
+            }
+
+            if(order.UserId != currentUserId)
+            {
+                return BadRequest();
+            }
+
+            var itemsQuery = this.data
+               .Orderitems
+               .Where(c => c.OrderId == orderId)
+               .AsQueryable();
+
+            if (itemsQuery == null)
+            {
+                return BadRequest();
+            }
+
+            var itemsIds = itemsQuery.Select(c => c.ProductId).ToList();
+
+            var productsQuery = this.data.Products.Where(c => itemsIds.Contains(c.Id)).AsQueryable();
+
+            var products = from o in orderQuery
+                           join oi in itemsQuery on o.Id equals oi.OrderId
+                           join p in productsQuery on oi.ProductId equals p.Id
+                           where o.Id == orderId
+                           select new
+                           {
+                               Id = p.Id,
+                               Platform = p.Platform,
+                               ImagePath = p.ImagePath,
+                               Make = p.Make,
+                               Model = p.Model,
+                               Price = oi.Price,
+                               Quantity = oi.Quantity,
+                               Discount = oi.Discount,
+                           };
+
+            var productsList = products.ToList();
+
+            var orderItemsViewModel = productsList.Select(c => new OrderItemViewModel
+            {
+                ImagePath = c.ImagePath,
+                ProductId = c.Id,
+                Price = c.Quantity * (c.Price - (c.Discount / 100) * c.Price),
+                Make = c.Make,
+                Model = c.Model,
+                Platform = c.Platform,
+                Quantity = c.Quantity
+            }).ToList();
+
+            var grandTotalPrice = orderItemsViewModel.Sum(c => c.Price);
+
+            var details = new OrderInputViewModel
+            {
+                FirstName = order.FirstName,
+                LastName = order.LastName,
+                Address1 = order.Address1,
+                City = order.City,
+                Country = order.Country,
+                PostalCode = order.PostalCode
+            };
+
+            var orderSummary = new OrderSummaryViewModel
+            {
+                Details = details,
+                GrandTotal = grandTotalPrice,
+                OrderItems = orderItemsViewModel
+            };
+
+            return View(orderSummary);
+        }
+
+        [Authorize]
         public IActionResult Order(OrderInputViewModel details)
         {
             string currentUserID = GetUserId();

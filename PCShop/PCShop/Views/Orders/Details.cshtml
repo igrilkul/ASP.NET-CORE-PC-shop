@@ -1,0 +1,37 @@
+﻿@model OrderSummaryViewModel
+
+<h2 class="heading-margin text-center">@ViewBag.Title</h2>
+
+    <div class="">
+        <div class="row">
+            <div class="col-7">
+                <div class="card">
+                    <div class="card-title">Delivery Address</div>
+                    <div class="card-body">
+                        <p>@Model.Details.FirstName @Model.Details.LastName</p>
+                        <p>@Model.Details.PostalCode @Model.Details.City</p>
+                        <p>@Model.Details.Address1</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-5">
+                <div class="card">
+                    <div class="card-title"></div>
+                    <div class="card-body">
+                        <p>@Model.Details.Country</p>
+                        <p>@Model.Details.City</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <ul class="list-group list-group-flush">
+                @foreach (var product in @Model.OrderItems)
+                {
+
+                    <partial name="_ListOrderViewPartial" model="product" />
+                }
+            </ul>
+            <p class="text-right"><strong>Total Price - </strong>@Model.GrandTotal €</p>
+    
+    </div>
