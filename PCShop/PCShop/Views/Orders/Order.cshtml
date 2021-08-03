@@ -5,15 +5,17 @@
         <h2 class="heading-margin text-center">@ViewBag.Title</h2>
 
         <form method="post">
-            <div class="form-group">
-                <label asp-for="FirstName">First Name</label>
-                <input asp-for="FirstName" class="form-control">
-                <span asp-validation-for="FirstName" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName">Last Name</label>
-                <input asp-for="LastName" class="form-control">
-                <span asp-validation-for="LastName" class="small text-danger"></span>
+            <div class="forms2" style="display:table">
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="FirstName">First Name</label>
+                    <input asp-for="FirstName" class="form-control">
+                    <span asp-validation-for="FirstName" class="small text-danger"></span>
+                </div>
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="LastName">Last Name</label>
+                    <input asp-for="LastName" class="form-control">
+                    <span asp-validation-for="LastName" class="small text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Mobile">Phone Number</label>
@@ -35,28 +37,31 @@
                 <textarea asp-for="Address2" class="form-control" placeholder="ul Ivan Boris 7"></textarea>
                 <span asp-validation-for="Address2" class="small text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="City">City</label>
-                <input asp-for="City" class="form-control" placeholder="Plovdiv">
-                <span asp-validation-for="City" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Province">Province</label>
-                <input asp-for="Province" class="form-control" placeholder="Plovdiv">
-                <span asp-validation-for="Province" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Country">Country</label>
-                <input asp-for="Country" class="form-control" placeholder="Bulgaria">
-                <span asp-validation-for="Country" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PostalCode">Postal Code</label>
-                <input asp-for="PostalCode" class="form-control" placeholder="4000">
-                <span asp-validation-for="PostalCode" class="small text-danger"></span>
+
+            <div class="forms2" style="display:table">
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="City">City</label>
+                    <input asp-for="City" class="form-control" placeholder="Plovdiv">
+                    <span asp-validation-for="City" class="small text-danger"></span>
+                </div>
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="Province">Province</label>
+                    <input asp-for="Province" class="form-control" placeholder="Plovdiv">
+                    <span asp-validation-for="Province" class="small text-danger"></span>
+                </div>
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="Country">Country</label>
+                    <input asp-for="Country" class="form-control" placeholder="Bulgaria">
+                    <span asp-validation-for="Country" class="small text-danger"></span>
+                </div>
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="PostalCode">Postal Code</label>
+                    <input asp-for="PostalCode" class="form-control" placeholder="4000">
+                    <span asp-validation-for="PostalCode" class="small text-danger"></span>
+                </div>
             </div>
 
-            <input class="btn btn-primary mt-3" type="submit" value="Submit" />
+                <input class="btn btn-primary mt-3" type="submit" value="Submit" />
         </form>
     </div>
 </div>

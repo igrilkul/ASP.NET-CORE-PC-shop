@@ -1,0 +1,68 @@
+﻿@model OrderSummaryViewModel
+
+<div class="row">
+    <div class="">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+
+        <form method="get" style="float:left">
+            <div class="forms2" style="display:table">
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="@Model.Details.FirstName">First Name</label>
+                    <input asp-for="@Model.Details.FirstName" class="form-control" readonly>
+                </div>
+                <div class="form-group" style="display: table-cell; margin-right: 50px">
+                    <label asp-for="@Model.Details.LastName">Last Name</label>
+                    <input asp-for="@Model.Details.LastName" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="forms3">
+                <div class="form-group">
+                    <label asp-for="@Model.Details.Mobile">Phone Number</label>
+                    <input asp-for="@Model.Details.Mobile" class="form-control" readonly></input>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Details.Email">Email Address</label>
+                    <input asp-for="@Model.Details.Email" class="form-control" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Details.Address1">Address 1</label>
+                <textarea asp-for="@Model.Details.Address1" class="form-control" readonly></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Details.Address2">Address 2</label>
+                <textarea asp-for="@Model.Details.Address2" class="form-control" readonly></textarea>
+            </div>
+
+            <div class="forms2" style="display:table">
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="@Model.Details.City">City</label>
+                    <input asp-for="@Model.Details.City" class="form-control" readonly>
+                </div>
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="@Model.Details.Province">Province</label>
+                    <input asp-for="@Model.Details.Province" class="form-control" readonly>
+                </div>
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="@Model.Details.Country">Country</label>
+                    <input asp-for="@Model.Details.Country" class="form-control" readonly>
+                </div>
+                <div class="form-group" style="display:table-cell">
+                    <label asp-for="@Model.Details.PostalCode">Postal Code</label>
+                    <input asp-for="@Model.Details.PostalCode" class="form-control" readonly>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach (var product in @Model.OrderItems)
+                {
+                    <partial name="_ListOrderViewPartial" model="product" />
+                }
+            </ul>
+            <p class="text-right"><strong>Total Price - </strong>@Model.GrandTotal €</p>
+        </form>
+        <form method="post">
+            <input class="btn btn-primary mt-3" type="submit" value="Submit" />
+        </form>
+    </div>
+</div>

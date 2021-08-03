@@ -35,7 +35,7 @@ namespace PCShop.Data
                 .HasOne(c => c.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(c => c.CategoryId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             //Cart
 
@@ -77,7 +77,7 @@ namespace PCShop.Data
                 .HasMany(c => c.Items)
                 .WithOne(c => c.Order)
                 .HasForeignKey(c => c.OrderId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Entity<Order_item>()

@@ -44,10 +44,8 @@ namespace PCShop.Controllers
             var itemsQuery = this.data.CartItems.Where(c => c.CartId == cart.Id).AsQueryable();
 
             var itemsIds = itemsQuery.Select(c => c.ProductId).ToList();
-
-            //var getItemsQuery = this.data.Products.Where(c=>c.Id == itemsQuery.)
             
-            var productsQuery = this.data.Products.AsQueryable();
+            var productsQuery = this.data.Products.Where(c => itemsIds.Contains(c.Id)).AsQueryable();
 
             var productsList = from c in cartQuery
                        join ci in itemsQuery on c.Id equals ci.CartId

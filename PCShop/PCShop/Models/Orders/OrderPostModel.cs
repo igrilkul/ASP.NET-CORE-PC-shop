@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PCShop.Data.Models
+namespace PCShop.Models.Orders
 {
-    public class Order
+    public class OrderPostModel
     {
-        public int Id { get; init; }
-
         public string UserId { get; init; }
-        public User User { get; init; }
 
         public string Status { get; set; }
 
         public double BaseTotal { get; init; }
 
-        public double Discount { get; init; } = 0;
+        public double Discount { get; init; }
 
         public double GrandTotal { get; init; }
 
@@ -40,9 +37,6 @@ namespace PCShop.Data.Models
 
         public string PostalCode { get; set; }
 
-        public DateTime CreatedAt { get; init; }
-
-        public IEnumerable<Order_item> Items { get; init; } = new List<Order_item>();
-
+        public DateTime CreatedAt { get; set; }
     }
 }

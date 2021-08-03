@@ -18,9 +18,9 @@ namespace PCShop.Data.Models
         public int OrderId { get; init; }
         public Order Order { get; init; }
         
-        public float Price { get; init; }
+        public double Price { get; init; }
 
-        public float Discount { get; init; }
+        public double Discount { get; init; }
 
         public int Quantity { get; init; }
 
