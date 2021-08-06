@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PCShop.Data
+namespace PCShop.Data.Models
 {
     public class User :IdentityUser
     {

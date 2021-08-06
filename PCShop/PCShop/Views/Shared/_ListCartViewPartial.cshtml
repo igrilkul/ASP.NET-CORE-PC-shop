@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ProductListViewModel 
+@{
     var pageName = ViewContext.RouteData.Values["controller"].ToString();
 
     var controllerType = "";
@@ -35,7 +36,7 @@
     }
 }
 
-        <li onload=myFunction(@pageName) class="list-group-item">
+        <li class="list-group-item">
             <div class="row text-center">
                 <div class="col-md-3">
                     <img src="@Model.ImagePath" class="rounded float-left" alt="img-thumbnail" width="150px" />
@@ -50,7 +51,14 @@
                        asp-action="Details"
                        asp-route-id="@Model.Id">Details</a>
                     <br />
-                    <div><div class="text-left"> Quantity = </div><input class="text-right form-control form-control-sm col-2" type="number" placeholder="#" value="@Model.Quantity" min="0" max="50"></div>
+
+                    
+                    <label asp-for="@Model.Quantity">Quantity</label>
+                    <input asp-for="@Model.Quantity" class="form-control" placeholder="#" min="0" max="50">
+                    <span asp-validation-for="@Model.Quantity" class="small text-danger"></span>
+                    
+                    <!--<div class="text-left"> Quantity = </div><input class="text-right form-control form-control-sm col-2" type="number" placeholder="#" value="@Model.Quantity" min="0" max="50">-->
+
                     <a class="btn btn-warning"
                        asp-controller="Carts"
                        asp-action="Remove"

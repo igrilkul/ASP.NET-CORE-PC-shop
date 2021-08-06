@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PCShop.Data.Models;
 
@@ -25,7 +26,6 @@ namespace PCShop.Data
         public DbSet<Order> Orders { get; init; }
 
         public DbSet<Order_item> Orderitems { get; init; }
-
 
 
         protected override void OnModelCreating(ModelBuilder builder)

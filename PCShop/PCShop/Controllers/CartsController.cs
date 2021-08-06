@@ -74,6 +74,25 @@ namespace PCShop.Controllers
         }
 
         [Authorize]
+        [HttpPost]
+        public IActionResult All(IEnumerable<ProductListViewModel> models)
+        {
+            foreach(var cartItem in models)
+            {
+                var id = cartItem.Id;
+                if(this.data.CartItems.Where(c=>c.ProductId==id).FirstOrDefault().Quantity != cartItem.Quantity)
+                {
+                    this.data.CartItems.Where(c => c.ProductId == id).FirstOrDefault().Quantity = cartItem.Quantity;
+                }
+            }
+
+            this.data.SaveChanges();
+
+            return RedirectToAction("Order", "Orders",models);
+        }
+        
+
+            [Authorize]
         public IActionResult AddToCart(string controllerType, string id)
         {
             ClaimsPrincipal currentUser = this.User;
