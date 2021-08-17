@@ -2,4 +2,18 @@
     ViewData["Title"] = "Admin Panel";
 }
 
-<h2>"Hi Admin"</h2>
+<ul class="accordion">
+    <li>
+        <a class="btn-link"
+           asp-controller="Admin"
+           asp-action="Add"
+           >Add Item</a>
+    </li>
+    <li>
+        <a class="btn-link btn"
+           asp-controller="Admin"
+           asp-action="Edit"
+           >Edit Items
+        </a>
+    </li>
+</ul>

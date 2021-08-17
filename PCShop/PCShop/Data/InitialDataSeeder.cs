@@ -1,4 +1,5 @@
-﻿using PCShop.Data.Seeders;
+﻿using Microsoft.EntityFrameworkCore;
+using PCShop.Data.Seeders;
 
 
 namespace PCShop.Data
@@ -10,11 +11,12 @@ namespace PCShop.Data
         public InitialDataSeeder(PCShopDbContext data)
         {
             this.data = data;
+            
         }
 
         public void StartSeeding()
         {
-            var roleSeeder = new RoleSeeder(this.data);
+            var adminSeeder = new AdminSeeder(this.data);
             var categorySeeder = new CategorySeeder(this.data);
             var caseSeeder = new CaseSeeder(this.data);
             var cpuCoolerSeeder = new CPUCoolerSeeder(this.data);
@@ -24,7 +26,7 @@ namespace PCShop.Data
             var psuSeeder = new PSUSeeder(this.data);
             var ramSeeder = new RAMSeeder(this.data);
 
-            roleSeeder.start();
+            adminSeeder.start();
             categorySeeder.start();
             caseSeeder.start();
             cpuCoolerSeeder.start();

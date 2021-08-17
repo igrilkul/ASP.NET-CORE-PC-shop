@@ -1,14 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using PCShop.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace PCShop.Data.Seeders
 {
-    public class AdminSeeder : ISeeder
+    public class AdminSeeder
     {
         public PCShopDbContext data;
-        
+
         public AdminSeeder(PCShopDbContext data)
         {
             this.data = data;
@@ -16,24 +20,71 @@ namespace PCShop.Data.Seeders
 
         public void start()
         {
-            throw new NotImplementedException();
+            AddRole("User").Wait();
+            string adminRoleId = AddRole("Administrator").GetAwaiter().GetResult();
+
+            string adminUserId = AddUser("admin", "admin@abv.bg", "Legolego1!");
+
+            SetAdminRoleToUser(adminUserId, adminRoleId);
         }
 
-        public bool checkData()
+        public async Task<string> AddRole(string name)
         {
-            if(this.data.Users.Any(x=>x.IsInRole("Administrator")))
+                var roleStore = new RoleStore<IdentityRole>(this.data);
+
+            if (!this.data.Roles.Any(r => r.Name == name))
+            {
+                var role = new IdentityRole(name);
+                await roleStore.CreateAsync(role);
+                this.data.SaveChanges();
+
+                return role.Id;
+            }
+            else
+            {
+                return this.data.Roles.Where(x=>x.Name==name).FirstOrDefault().Id;
+            }
         }
 
-        public void prepareData()
+        public string AddUser( string name,string email,string password)
         {
-            throw new NotImplementedException();
+            
+            if (!this.data.Users.Any(x=>x.Email == email))
+            {
+                PasswordHasher<User> ph = new PasswordHasher<User>();
+
+                var user = new User
+                {
+                    UserName = name,
+                    Email = email,
+                    EmailConfirmed = true
+                };
+
+                user.PasswordHash = ph.HashPassword(user, password);
+                this.data.Users.Add(user);
+                this.data.SaveChanges();
+
+                return user.Id;
+            }
+            else
+            {
+                return this.data.Users.Where(x => x.Email == email).FirstOrDefault().Id;
+            }
         }
 
-        public void seedData()
+        public void SetAdminRoleToUser(string userId, string roleId)
         {
-            throw new NotImplementedException();
+            if(!this.data.UserRoles.Any(x=>x.RoleId==roleId && x.UserId == userId))
+            {
+                this.data.UserRoles.Add(new IdentityUserRole<string>
+                {
+                    RoleId = roleId,
+                    UserId = userId
+                });
+
+                this.data.SaveChanges();
+            }
         }
 
-       
     }
 }

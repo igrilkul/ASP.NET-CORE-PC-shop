@@ -27,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Areas\Admin\Views\Shared\_ListViewPartial - Copy.cshtml.css">
+      <DependentUpon>_ListViewPartial.cshtml.css</DependentUpon>
+    </None>
     <None Update="Views\Shared\_ListViewPartial - Copy.cshtml.css">
       <DependentUpon>_ListViewPartial.cshtml.css</DependentUpon>
     </None>
@@ -34,7 +37,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
 </Project>

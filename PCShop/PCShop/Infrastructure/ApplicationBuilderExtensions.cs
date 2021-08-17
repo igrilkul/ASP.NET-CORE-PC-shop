@@ -13,7 +13,8 @@ namespace PCShop.Inbfrastructure
             using var scopedServices = app.ApplicationServices.CreateScope();
 
             var data = scopedServices.ServiceProvider.GetService<PCShopDbContext>();
-
+            
+            
             data.Database.Migrate();
 
             var initialDataSeeder = new InitialDataSeeder(data);

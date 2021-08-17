@@ -1,0 +1,15 @@
+﻿@model IEnumerable<CategoriesListModel>
+
+<h2>Select category:</h2>
+<ul>
+    @foreach(var cat in Model)
+            {
+                <li>
+                    <a class="btn-link"
+                       asp-area="Admin"
+                       asp-controller="Admin"
+                       asp-action="EditList"
+                       asp-route-id="@cat.Id">@cat.Name</a>
+                </li>
+            }
+</ul>

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PCShop.Data.Models;
-
+using PCShop.Data.Seeders;
 
 namespace PCShop.Data
 {
@@ -92,8 +92,8 @@ namespace PCShop.Data
                  .OnDelete(DeleteBehavior.Cascade);
 
 
-
             base.OnModelCreating(builder);
+
         }
     }
 }

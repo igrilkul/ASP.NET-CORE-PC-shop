@@ -1,0 +1,108 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ItemFormModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="@Model.CategoryId">Category Id</label>
+                <select asp-for="@Model.CategoryId" class="form-control" placeholder="#">
+                    <option value=1>Case</option>
+                    <option value=2>CPU</option>
+                    <option value=3>CPU Cooler</option>
+                    <option value=4>GPU</option>
+                    <option value=5>Motherboard</option>
+                    <option value=6>PSU</option>
+                    <option value=7>RAM</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ImagePath">Image Path</label>
+                <input asp-for="@Model.ImagePath" class="form-control" placeholder="Image URL" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Platform">Platform</label>
+                <input asp-for="@Model.Platform" class="form-control" placeholder="AMD" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Make">Make</label>
+                <input asp-for="@Model.Make" class=" form-control" placeholder="Asus" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Model">Model</label>
+                <input asp-for="@Model.Model" class="form-control" placeholder="B450" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Price">Price</label>
+                <input asp-for="@Model.Price" class="form-control" placeholder=490.00 />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ReleasedYear">Released Year</label>
+                <input asp-for="@Model.ReleasedYear" class="form-control" placeholder="2009" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Size">Size</label>
+                <input asp-for="@Model.Size" class="form-control" placeholder="ATX" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.MinSpeed">Clock speed</label>
+                <input asp-for="@Model.MinSpeed" class="form-control" placeholder="3600" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.MaxSpeed">Boost Clock speed</label>
+                <input asp-for="@Model.MaxSpeed" class="form-control" placeholder="5100" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.TDP">TDP</label>
+                <input asp-for="@Model.TDP" class="form-control" placeholder="750" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.NumberOfFans">Number of Cooling Fans</label>
+                <input asp-for="@Model.NumberOfFans" class="form-control" placeholder="3" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Airflow">Fan Airflow</label>
+                <input asp-for="@Model.Airflow" class="form-control" placeholder="20.3" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.RPM">Fan RPM</label>
+                <input asp-for="@Model.RPM" class="form-control" placeholder="1500" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Noise">Noise</label>
+                <input asp-for="@Model.Noise" class="form-control" placeholder="Noise" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Dimensions">Dimensions</label>
+                <input asp-for="@Model.Dimensions" class="form-control" placeholder="20x20x55cm" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Power">PSU Max Power</label>
+                <input asp-for="@Model.Power" class="form-control" placeholder="750" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Efficiency">PSU Efficiency</label>
+                <input asp-for="@Model.Efficiency" class="form-control" placeholder="80+ Gold" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.NumberOfSticks">Number of RAM Sticks</label>
+                <input asp-for="@Model.NumberOfSticks" class="form-control" placeholder="2" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Timings">RAM Timings</label>
+                <input asp-for="@Model.Timings" class="form-control" placeholder="9-9-9-24" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Capacity">RAM Memory Size</label>
+                <input asp-for="@Model.Capacity" class="form-control" placeholder="16" />
+            </div>
+            <input class="btn btn-primary mt-3" type="submit" value="Submit" />
+        </form>
+    </div>
+</div>
