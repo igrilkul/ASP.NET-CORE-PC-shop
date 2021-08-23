@@ -23,7 +23,7 @@ namespace PCShop.Data.Seeders
             AddRole("User").Wait();
             string adminRoleId = AddRole("Administrator").GetAwaiter().GetResult();
 
-            string adminUserId = AddUser("admin", "admin@abv.bg", "Legolego1!");
+            string adminUserId = AddUser("admin@abv.bg", "admin@abv.bg", "Magazin1!");
 
             SetAdminRoleToUser(adminUserId, adminRoleId);
         }
@@ -56,7 +56,9 @@ namespace PCShop.Data.Seeders
                 var user = new User
                 {
                     UserName = name,
+                    NormalizedUserName = name.ToUpper(),
                     Email = email,
+                    NormalizedEmail = email.ToUpper(),
                     EmailConfirmed = true
                 };
 

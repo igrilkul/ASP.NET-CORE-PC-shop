@@ -9,7 +9,7 @@ namespace PCShop.Models.CPUs
 {
     public class AllCPUsQueryModel
     {
-        public const int CPUsPerPage = 1;
+        public const int CPUsPerPage = Constants.itemsPerPage;
 
         public int CurrentPage { get; init; } = 1;
 

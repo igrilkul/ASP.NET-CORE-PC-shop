@@ -151,10 +151,10 @@ namespace PCShop.Controllers
         public IActionResult Order(OrderInputViewModel details,string decoy)
         {
             
-            /*if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(details);
-            }*/
+            }
 
             var detailsModel = new OrderInputViewModel
             {

@@ -8,7 +8,7 @@ namespace PCShop.Models.CPUCoolers
 {
     public class AllCPUCoolersQueryModel
     {
-        public const int ItemsPerPage = 1;
+        public const int ItemsPerPage = Constants.itemsPerPage;
 
         public int CurrentPage { get; init; } = 1;
 

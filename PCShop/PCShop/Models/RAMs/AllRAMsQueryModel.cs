@@ -8,7 +8,7 @@ namespace PCShop.Models.RAMs
 {
     public class AllRAMsQueryModel
     {
-        public const int ItemsPerPage = 1;
+        public const int ItemsPerPage = Constants.itemsPerPage;
 
         public int CurrentPage { get; init; } = 1;
 

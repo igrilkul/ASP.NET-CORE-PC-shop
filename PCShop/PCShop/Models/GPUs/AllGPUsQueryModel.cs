@@ -8,7 +8,7 @@ namespace PCShop.Models.GPUs
 {
     public class AllGPUsQueryModel
     {
-        public const int ItemsPerPage = 1;
+        public const int ItemsPerPage = Constants.itemsPerPage;
 
         public int CurrentPage { get; init; } = 1;
 
