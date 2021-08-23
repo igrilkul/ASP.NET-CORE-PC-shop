@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PCShop.Data;
 using PCShop.Models;
 using PCShop.Models.Cases;
-using Microsoft.AspNetCore.Identity;
 using System;
 using System.Linq;
-using System.Security.Claims;
-using PCShop.Data.Models;
 
 namespace PCShop.Controllers
 {
