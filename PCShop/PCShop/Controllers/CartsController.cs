@@ -74,6 +74,7 @@ namespace PCShop.Controllers
 
         [Authorize]
         [HttpPost]
+        //Redirects to Order page
         public IActionResult All(IEnumerable<ProductListViewModel> models)
         {
             foreach(var cartItem in models)
@@ -87,11 +88,11 @@ namespace PCShop.Controllers
 
             this.data.SaveChanges();
 
-            return RedirectToAction("Order", "Orders",models);
+            return RedirectToAction("Order", "Orders", models);
         }
         
 
-            [Authorize]
+        [Authorize]
         public IActionResult AddToCart(string controllerType, string id)
         {
             ClaimsPrincipal currentUser = this.User;
