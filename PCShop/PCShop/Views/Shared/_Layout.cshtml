@@ -46,9 +46,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="All">Orders</a>
                         </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+                        @if (this.User.IsInRole("Administrator"))
+                         {
+                             <li class="nav-item">
+                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="All">Admin Panel</a>
+                             </li>
+                         }
+
+                        </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
             </div>
         </nav>
     </header>
@@ -67,5 +74,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

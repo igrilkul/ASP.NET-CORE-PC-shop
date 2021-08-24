@@ -1,6 +1,7 @@
 ﻿using PCShop.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,9 +18,9 @@ namespace PCShop.Models
         public string Platform { get; set; }
 
         public string Make { get; set; }
-
+        [Required]
         public string Model { get; set; }
-
+        [Required]
         public double Price { get; set; }
 
         public int? ReleasedYear { get; set; }

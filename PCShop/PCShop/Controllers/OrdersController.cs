@@ -128,8 +128,8 @@ namespace PCShop.Controllers
         {
             string currentUserID = GetUserId();
 
-            var cart = this.data.Carts.Where(c => c.UserId == currentUserID).FirstOrDefault();
-            var cartItems = this.data.CartItems.Where(c => c.CartId == cart.Id).ToList();
+            var cart = GetCart(currentUserID);
+            var cartItems = GetCartItems(cart.Id);
 
             if (!cartItems.Any())
             {
@@ -144,7 +144,9 @@ namespace PCShop.Controllers
             return View(details);
         }
 
-       
+        
+
+
 
         [HttpPost]
         [Authorize]
@@ -233,7 +235,7 @@ namespace PCShop.Controllers
 
             var grandTotalPrice = orderItemsViewModel.Sum(c => c.Price);
 
-            //ToDo: OrderId, CreatedOn
+
             var orderItemsPostModel = productsList.Select(c => new OrderItemPostModel
             {
                 ProductId = c.Id,
@@ -291,9 +293,9 @@ namespace PCShop.Controllers
         public IActionResult Review()
         {
             var currentUserID = GetUserId();
-            var cartId = this.data.Carts.Where(c => c.UserId == currentUserID).Select(c=>c.Id).FirstOrDefault();
+            var cartId = GetCart(currentUserID).Id;
 
-            var cartItems = this.data.CartItems.Where(c => c.CartId == cartId).ToList();
+            var cartItems = GetCartItems(cartId);
             this.data.CartItems.RemoveRange(cartItems);
 
             //Get saved order post model from temp data
@@ -358,6 +360,16 @@ namespace PCShop.Controllers
             ClaimsPrincipal currentUser = this.User;
             var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
             return currentUserID;
+        }
+
+        private Cart GetCart(string currentUserID)
+        {
+            return this.data.Carts.Where(c => c.UserId == currentUserID).FirstOrDefault();
+        }
+
+        private List<Cart_item> GetCartItems(int cartId)
+        {
+            return this.data.CartItems.Where(c => c.CartId == cartId).ToList();
         }
     }
 }
