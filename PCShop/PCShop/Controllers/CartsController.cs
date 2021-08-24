@@ -125,7 +125,7 @@ namespace PCShop.Controllers
             Cart_item item = GetCartItem(Int32.Parse(id), cart.Id);
             if (item == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             this.data.CartItems.Remove(item);

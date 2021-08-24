@@ -40,14 +40,15 @@ namespace PCShop.Test.Controller
 
             //Act
             var resultFound = ramsController.Details(id);
-            var resultNotFound = ramsController.Details(badId);
+            RedirectToActionResult resultNotFound = (RedirectToActionResult)ramsController.Details(badId);
 
             //Assert
             Assert.NotNull(resultFound);
             Assert.IsType<ViewResult>(resultFound);
 
             Assert.NotNull(resultNotFound);
-            Assert.IsType<BadRequestResult>(resultNotFound);
+            Assert.Equal("Home", resultNotFound.ControllerName);
+            Assert.Equal("Error", resultNotFound.ActionName);
         }
 
         public PCShopDbContext GetData()

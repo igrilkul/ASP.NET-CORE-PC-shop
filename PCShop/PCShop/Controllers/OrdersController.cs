@@ -50,12 +50,12 @@ namespace PCShop.Controllers
             
             if(order == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             if(order.UserId != currentUserId)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             var itemsQuery = this.data
@@ -65,7 +65,7 @@ namespace PCShop.Controllers
 
             if (itemsQuery == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             var itemsIds = itemsQuery.Select(c => c.ProductId).ToList();
@@ -133,7 +133,7 @@ namespace PCShop.Controllers
 
             if (!cartItems.Any())
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             if (details == null)
@@ -187,7 +187,7 @@ namespace PCShop.Controllers
 
             if (cartQuery == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             var itemsQuery = this.data
@@ -197,7 +197,7 @@ namespace PCShop.Controllers
 
             if(itemsQuery == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             var itemsIds = itemsQuery.Select(c => c.ProductId).ToList();

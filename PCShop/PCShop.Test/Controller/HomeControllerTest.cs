@@ -20,5 +20,19 @@ namespace PCShop.Test.Controller
             Assert.IsType<ViewResult>(result);
         }
 
+        [Fact]
+        public void IndexShouldReturnView()
+        {
+            //Arrange
+            var homeController = new HomeController();
+
+            //Act
+            var result = homeController.Index();
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.IsType<ViewResult>(result);
+        }
+
     }
 }

@@ -129,7 +129,7 @@ namespace PCShop.Controllers
 
             if (gpu == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             return View(gpu);

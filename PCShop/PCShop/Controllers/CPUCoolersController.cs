@@ -102,7 +102,7 @@ namespace PCShop.Controllers
 
             if (cpuCooler == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             return View(cpuCooler);

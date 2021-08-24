@@ -129,7 +129,7 @@ namespace PCShop.Controllers
 
             if (ram == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             return View(ram);

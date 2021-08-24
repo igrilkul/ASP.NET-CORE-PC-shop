@@ -97,7 +97,7 @@ namespace PCShop.Controllers
 
             if(cpu == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             return View(cpu);

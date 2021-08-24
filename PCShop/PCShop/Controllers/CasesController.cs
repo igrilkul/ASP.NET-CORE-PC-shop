@@ -109,7 +109,7 @@ namespace PCShop.Controllers
 
             if (caso == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             return View(caso);

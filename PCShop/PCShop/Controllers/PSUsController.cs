@@ -124,7 +124,7 @@ namespace PCShop.Controllers
 
             if (psu == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             return View(psu);

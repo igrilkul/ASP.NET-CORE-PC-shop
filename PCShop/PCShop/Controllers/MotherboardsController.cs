@@ -128,7 +128,7 @@ namespace PCShop.Controllers
 
             if (motherboard == null)
             {
-                return BadRequest();
+                return RedirectToAction("Error", "Home");
             }
 
             return View(motherboard);

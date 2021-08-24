@@ -62,18 +62,16 @@ namespace PCShop.Test.Controller
             cartsController.ControllerContext = context;
 
             //Act
-            var noCartResult = cartsController.Remove("1");
             cartsController.AddToCart("RAM", "1");
-            var noItemResult = cartsController.Remove("2");
+            RedirectToActionResult noItemResult = (RedirectToActionResult)cartsController.Remove("2");
             var successResult = cartsController.Remove("1");
 
             //Assert
             Assert.NotNull(successResult);
-            Assert.NotNull(noCartResult);
             Assert.NotNull(noItemResult);
 
-            Assert.IsType<BadRequestResult>(noCartResult);
-            Assert.IsType<BadRequestResult>(noItemResult);
+            Assert.Equal("Home", noItemResult.ControllerName);
+            Assert.Equal("Error", noItemResult.ActionName);
 
             Assert.True(data.Carts.Any());
             Assert.True(data.CartItems.Count()==0);

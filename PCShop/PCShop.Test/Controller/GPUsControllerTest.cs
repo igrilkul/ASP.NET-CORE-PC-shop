@@ -43,14 +43,15 @@ namespace PCShop.Test.Controller
 
             //Act
             var resultFound = gpusController.Details(id);
-            var resultNotFound = gpusController.Details(badId);
+            RedirectToActionResult resultNotFound = (RedirectToActionResult)gpusController.Details(badId);
 
             //Assert
             Assert.NotNull(resultFound);
             Assert.IsType<ViewResult>(resultFound);
 
             Assert.NotNull(resultNotFound);
-            Assert.IsType<BadRequestResult>(resultNotFound);
+            Assert.Equal("Home", resultNotFound.ControllerName);
+            Assert.Equal("Error", resultNotFound.ActionName);
         }
 
         public PCShopDbContext GetData()

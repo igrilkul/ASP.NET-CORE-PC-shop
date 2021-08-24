@@ -160,12 +160,13 @@ namespace PCShop.Test.Controller
             //Act
             ordersController.Review();
             var result = ordersController.Details("1");
-            var noIdResult = ordersController.Details("2");
+            RedirectToActionResult noIdResult = (RedirectToActionResult)ordersController.Details("2");
 
             //Assert
             Assert.NotNull(result);
             Assert.IsType<ViewResult>(result);
-            Assert.IsType<BadRequestResult>(noIdResult);
+            Assert.Equal("Home", noIdResult.ControllerName);
+            Assert.Equal("Error", noIdResult.ActionName);
         }
 
         private static ControllerContext GetContext()
